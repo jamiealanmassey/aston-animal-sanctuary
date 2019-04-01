@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
+    return View::make('pages.landing');
+});
+
+Route::get('/adopt', function () {
     return View::make('pages.adopt');
 });
+
+Route::get('/pending', function () {
+    return View::make('pages.pending');
+});
+
+Route::get('/profile', function () {
+    return View::make('pages.profile');
+});
+
