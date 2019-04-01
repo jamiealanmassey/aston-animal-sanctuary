@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return View::make('pages.adopt');
 });
