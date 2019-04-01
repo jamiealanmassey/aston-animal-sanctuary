@@ -27,6 +27,40 @@ body {
     border: none;
 }
 
+.landing-card {
+    max-height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.landing-card-image {
+    object-fit: contain;
+}
+
+.btn-default {
+    background-color: #323A45;
+    color:#FFF;
+    border-color: rgb(42, 48, 56);
+}
+ 
+.btn-default:hover, 
+.btn-default:focus, 
+.btn-default:active, 
+.btn-default.active, 
+.open .dropdown-toggle.btn-default {
+    background-color: rgb(69, 80, 97);
+    color:#FFF;
+    border-color: rgb(45, 50, 56);
+}
+
+.bg-light-2 {
+    background-color: #FFFFF9;
+}
+
 a:hover {
     text-decoration: none !important;
+}
+
+footer {
+    background-color: #FFFFF9;
 }
