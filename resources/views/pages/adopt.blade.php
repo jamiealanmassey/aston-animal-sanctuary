@@ -4,24 +4,31 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-12 mb-4">
-                <p><b>Sort By</b></p>
-                <select class="form-control form-control-sm mb-2">
+                <b>Sort By</b>
+                <select class="form-control form-control-sm mb-2 mt-1">
                     <option value="1"selected>Most Relevant</option>
                     <option value="2">Alphabetical (Ascending)</option>
                     <option value="3">Alphabetical (Descending)</option>
                     <option value="4">Date Added (Ascending)</option>
                     <option value="5">Date Added (Descending)</option>
                 </select>
-                <p><b>Animal Type</b></p>
-                <select class="form-control form-control-sm mb-2">
+                <b>Animal Type</b>
+                <select class="form-control form-control-sm mb-2 mt-1">
                     <option value="1" selected>Dog</option>
                     <option value="2">Cat</option>
                     <option value="3">Bird</option>
                     <option value="4">Bunny</option>
                     <option value="5">Hamster</option>
                 </select>
-                <p><b>Animal Breeds</b></p>
-                <div class="form-check">
+                <b>Adoption Filters</b>
+                <div class="form-check mt-1">
+                    <input class="form-check-input" type="checkbox" value="" id="adopted-checkbox">
+                    <label class="form-check-label" for="adopted-checkbox">
+                        Show Adopted
+                    </label>
+                </div>
+                <b>Animal Breeds</b>
+                <div class="form-check mt-1">
                     <input class="form-check-input" type="checkbox" value="" id="breed-checkbox-1">
                     <label class="form-check-label" for="breed-checkbox-1">
                         Border Collie

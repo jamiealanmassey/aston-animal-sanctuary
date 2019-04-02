@@ -13,13 +13,19 @@
                     <a class="nav-link" href="{{ url('pending') }}">Pending Applications</a>
                 </li>
             </ul>
-            <div class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('profile') }}">John Doe</a>
-                    </li>
-                </ul>
-                <img src="img/0_200.png" width="40px" class="d-none d-lg-block"/>
+            <div class="navbar-nav ml-auto mt-2 mt-lg-0">                
+                <div class="dropdown show">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        John Doe
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url('profile') }}">Profile</a>
+                        <a class="dropdown-item" href="{{ url('privacy') }}">Privacy Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
+                    </div>
+                </div>
+                <img src="img/0_200.png" width="40px" class="d-none d-lg-block">
             </div>
         </div>
     </div>

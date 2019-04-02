@@ -2,8 +2,10 @@ html,
 body {
     background-color: #323A45;
     color: #323A45;
+    height: 100%;
+    margin: 0;
 }
-
+  
 .nav-item {
     margin-right: 10px;
     margin-left: 10px;
@@ -57,10 +59,28 @@ body {
     background-color: #FFFFF9;
 }
 
+.inverse-text {
+    color: #FFFFF9;
+}
+
 a:hover {
     text-decoration: none !important;
 }
 
-footer {
-    background-color: #FFFFF9;
+.content {
+    min-height: 100%;
+    width: 100%;
+}
+
+.content-inside {
+    width: 100%;
+}
+
+.pet-name {
+    text-transform: uppercase;
+}
+
+.card-img-top {
+    max-width: 100%;
+    max-height: 100%;
 }
