@@ -9,9 +9,18 @@
                 <li class="nav-item nav-item-select {{ Request::is('adopt*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('adopt') }}">Adpot a Pet {!! Request::is('adopt*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                 </li>
-                <li class="nav-item nav-item-select {{ Request::is('pending*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('pending') }}">Pending Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
-                </li>
+                @if (Auth::user()->admin == false)
+                    <li class="nav-item nav-item-select {{ Request::is('pending*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('pending') }}">Pending Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                    </li>
+                @else
+                    <li class="nav-item nav-item-select {{ Request::is('applicants*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('applicants') }}">View Applicants {!! Request::is('applicants*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                    </li>
+                    <li class="nav-item nav-item-select {{ Request::is('pet*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('pet/new') }}">Add New Pet {!! Request::is('pet*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                    </li>
+                @endif
             </ul>
             <div class="navbar-nav ml-auto mt-2 mt-lg-0">
                 @if (Auth::check())
@@ -20,7 +29,7 @@
                             {!! Auth::user()->first_name . ' ' . Auth::user()->last_name !!}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item primary-text" href="{{ url('profile/' . Auth::user()->id) }}">Profile</a>
+                            <a class="dropdown-item primary-text" href="{{ url('profile') }}">Profile</a>
                             <a class="dropdown-item primary-text" href="{{ url('privacy') }}">Privacy Settings</a>
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('logout') }}" class="dropdown-item primary-text" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
