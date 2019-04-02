@@ -1,11 +1,15 @@
 html,
 body {
-    background-color: #323A45;
-    color: #323A45;
+    background-color: #ffffff;
+    color: #0083bf;
     height: 100%;
     margin: 0;
 }
-  
+ 
+.nav-link {
+    color: #0083bf !important;
+}
+
 .nav-item {
     margin-right: 10px;
     margin-left: 10px;
@@ -14,19 +18,15 @@ body {
 
 .nav-item-select:hover, .active {
     padding-bottom: 0px;
-    border-bottom: 2px solid #323A45;
+    border-bottom: 2px solid #0083bf !important;
 }
 
 .primary-text {
-    color: #323A45;
+    color: #0083bf;
 }
 
 .secondary-text {
-    color: #FFFFF9;
-}
-
-.card {
-    border: none;
+    color: #696666;
 }
 
 .landing-card {
@@ -40,9 +40,9 @@ body {
 }
 
 .btn-default {
-    background-color: #323A45;
-    color:#FFF;
-    border-color: rgb(42, 48, 56);
+    background-color: #0083bf;
+    color:#ffffff;
+    border-color: #057cb3;
 }
  
 .btn-default:hover, 
@@ -50,17 +50,17 @@ body {
 .btn-default:active, 
 .btn-default.active, 
 .open .dropdown-toggle.btn-default {
-    background-color: rgb(69, 80, 97);
-    color:#FFF;
-    border-color: rgb(45, 50, 56);
+    background-color: #12a1e4;
+    color:#ffffff;
+    border-color: #0482bd;
 }
 
 .bg-light-2 {
-    background-color: #FFFFF9;
+    background-color: #ffffff;
 }
 
 .inverse-text {
-    color: #FFFFF9;
+    color: #ffffff;
 }
 
 a:hover {
@@ -91,4 +91,8 @@ a:hover {
 .return:active {
     color: inherit;
     text-decoration: underline;
+}
+
+.navbar {
+    background-color: #ffffff !important;
 }

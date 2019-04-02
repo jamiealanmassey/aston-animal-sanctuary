@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<div class="card landing-card bg-dark text-white text-center">
+<div class="card landing-card bg-dark text-white rounded-0 border-0 text-center">
     <img class="card-img landing-card-img" src="img/dog-landing.jpg" alt="Dog cover image">
     <div class="card-img-overlay p-3 p-md-5 m-md-3">
         <h5 class="card-title display-4 font-weight-normal">Adopt a Friend</h5>
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         @for ($x = 0; $x < 4; $x++)
-            <div class="col-lg-3 col-md-6 col-xs-12 bg-light-2 text-center overflow-hidden">
+            <div class="col-lg-3 col-md-6 col-xs-12 bg-light-2 text-center secondary-text overflow-hidden">
                 <div class="mr-md-3 pt-3 pt-md-5 mb-5">
                     <h2 class="display-5">Pet Name #{{ $x+1 }}</h2>
                     <p class="lead">Please adopt this cute animal before they are adopted by someone else! 

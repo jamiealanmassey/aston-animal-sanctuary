@@ -3,13 +3,13 @@
 <div class="container">
     <div class="row text-center">
         <div class="col">
-            <h1 class="mt-3 inverse-text"><strong>My Pending Adoption Applications</strong></h6>
+            <h1 class="mt-3"><strong>My Pending Adoption Applications</strong></h6>
         </div>
     </div>
     <div class="row mt-4 mb-4">
         @for ($x = 0; $x < 5; $x++)
             <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <div class="card text-center">
+                <div class="card text-center secondary-text">
                     <img class="card-img-left" src="img/featured/featured_{{ $x+1 }}.jpg" alt="" width="100%" height="250px">
                     <div class="card-body">
                         <h5 class="card-title pet-name"><strong>Pet Name #{{ $x+1 }} - {{ $x + 3 }} years old</strong></h5>
@@ -26,7 +26,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="withdrawModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered secondary-text" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Warning</h5>

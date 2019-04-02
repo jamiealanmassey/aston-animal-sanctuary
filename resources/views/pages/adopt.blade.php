@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<div class="container secondary-text mt-5">
+<div class="container mt-5 secondary-text">
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-12 mb-4">
@@ -47,9 +47,9 @@
                         @for ($x = 0; $x < 12; $x++)
                         <div class="col-lg-4 col-md-6 col-xs-12 mb-4">
                             <a href="#">
-                                <div class="card">
+                                <div class="card secondary-text">
                                     <img src="https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png" class="card-img-top" alt="...">
-                                    <div class="card-body primary-text">
+                                    <div class="card-body">
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     </div>
                                 </div>

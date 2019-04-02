@@ -15,14 +15,14 @@
             </ul>
             <div class="navbar-nav ml-auto mt-2 mt-lg-0">                
                 <div class="dropdown show">
-                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn dropdown-toggle primary-text" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         John Doe
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{ url('profile') }}">Profile</a>
-                        <a class="dropdown-item" href="{{ url('privacy') }}">Privacy Settings</a>
+                        <a class="dropdown-item primary-text" href="{{ url('profile') }}">Profile</a>
+                        <a class="dropdown-item primary-text" href="{{ url('privacy') }}">Privacy Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
+                        <a class="dropdown-item primary-text" href="{{ url('logout') }}">Logout</a>
                     </div>
                 </div>
                 <img src="img/0_200.png" width="40px" class="d-none d-lg-block">

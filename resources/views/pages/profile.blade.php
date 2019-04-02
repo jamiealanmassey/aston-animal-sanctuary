@@ -1,12 +1,12 @@
-@extends('layouts.headless')
+@extends('layouts.minimal')
 @section('content')
-<div class="container inverse-text">
+<div class="container">
     <div class="row mt-5">
         <a href="{{ url('/adopt') }}" class="return ml-3">
             <h5>Go Back to Aston Animal Santuary</h5>
         </a>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-5 secondary-text">
         <div class="col-sm-12 col-md-3">
             <img src="img/0_200.png" class="rounded" width="250px" height="250px">
         </div>
