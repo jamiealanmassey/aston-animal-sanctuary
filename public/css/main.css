@@ -5,7 +5,7 @@ body {
     height: 100%;
     margin: 0;
 }
- 
+
 .nav-link {
     color: #0083bf !important;
 }
@@ -22,7 +22,7 @@ body {
 }
 
 .primary-text {
-    color: #0083bf;
+    color: #0083bf !important;
 }
 
 .secondary-text {
@@ -44,11 +44,11 @@ body {
     color:#ffffff;
     border-color: #057cb3;
 }
- 
-.btn-default:hover, 
-.btn-default:focus, 
-.btn-default:active, 
-.btn-default.active, 
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
 .open .dropdown-toggle.btn-default {
     background-color: #12a1e4;
     color:#ffffff;

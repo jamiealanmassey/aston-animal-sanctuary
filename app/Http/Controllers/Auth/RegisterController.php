@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/adopt';
 
     /**
      * Create a new controller instance.
@@ -49,9 +49,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'bio' => ['string', 'max:1024'],
+            //'profile_image' => ['string', 'max:255'],
+            'birth_date' => ['required', 'date'],
+            'location' => ['required', 'string', 'min:5', 'max:128']
         ]);
     }
 
@@ -63,10 +68,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $request = request();
+        // $profileImage = $request->file('profile_picture');
+        // $profileImageSaveAsName = time() . Auth::id() . "-profile." . $profileImage->getClientOriginalExtension();
+        // $upload_path = storage_path('app/public/profile_images/') . Auth::id();
+        // $profile_image_url = $upload_path . $profileImageSaveAsName;
+        // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'birth_date' => $data['birth_date'],
+            'location' => $data['location'],
+            'bio' => $data['biography'],
+            //'profile_image' => $profile_image_url
         ]);
     }
 }

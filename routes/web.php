@@ -27,3 +27,7 @@ Route::get('/profile', function () {
     return View::make('pages.profile');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
