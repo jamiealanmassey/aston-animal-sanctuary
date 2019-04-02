@@ -29,7 +29,7 @@ class ProfileController extends Controller
      */
     public function getProfilePage()
     {
-        return View::make('pages.profile', ['user' => Auth::user() ]);
+        return View::make('pages.profile', [ 'user' => Auth::user() ]);
     }
 
     /**
@@ -42,7 +42,7 @@ class ProfileController extends Controller
     {
         // TODO: Block giving results on profiles set to private
         $user = DB::table('users')->where('id', $id)->first();
-        return View::make('pages.profile', ['user' => $user, 'myvariable' => $myvariable]);
+        return View::make('pages.profile', [ 'user' => $user ]);
     }
 
     /**

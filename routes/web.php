@@ -24,7 +24,8 @@ Route::get('/pending', function () {
 });
 
 // CRUD Routes for the concept of Pets
-Route::post('/pet/new', 'PetController@petPageCreate');
+Route::get('/pet/new', 'PetController@petNewPageView');
+Route::post('/pet/new', 'PetController@petNewPageCreate');
 Route::get('/pet/{id}', 'PetController@petPageView');
 Route::get('/pet/edit/{id}', 'PetController@editPetPageView');
 Route::put('/pet/edit/{id}', 'PetController@editPetPageUpdate');

@@ -121,7 +121,7 @@
                                         <label id="visual-file-label" class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                     </div>
                                 </div>
-                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                <small id="uploadHelpBlock" class="form-text text-muted">
                                     We recommend an image of dimensions 512x512 and images must be < 2MB.
                                 </small>
 
@@ -142,15 +142,6 @@
                                 </a>
                             </div>
                         </div>
-                        @if($errors->any())
-                            <div class="row collapse">
-                                <ul class="alert-box warning radius">
-                                    @foreach($errors->all() as $error)
-                                        <li> {{ $error }} </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                     </form>
                 </div>
             </div>

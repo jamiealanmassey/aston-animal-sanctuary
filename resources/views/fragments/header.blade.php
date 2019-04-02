@@ -9,7 +9,7 @@
                 <li class="nav-item nav-item-select {{ Request::is('adopt*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('adopt') }}">Adpot a Pet {!! Request::is('adopt*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                 </li>
-                @if (Auth::user()->admin == false)
+                @if (Auth::check() && Auth::user()->admin == false)
                     <li class="nav-item nav-item-select {{ Request::is('pending*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('pending') }}">Pending Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                     </li>
@@ -41,9 +41,9 @@
                         </div>
                     </div>
                     @if (isset(Auth::user()->profile_image))
-                        <img src="{{ "profile_image/" . Auth::user()->profile_image }}" width="40px" class="d-none d-lg-block rounded">
+                        <img src="{{ asset('profile_image/' . Auth::user()->profile_image) }}" width="40px" class="d-none d-lg-block rounded">
                     @else
-                        <img src="img/0_200.png" width="40px" class="d-none d-lg-block rounded">
+                        <img src="{{ asset('img/0_200.png') }}" width="40px" class="d-none d-lg-block rounded">
                     @endif
                 @else
                     <li class="nav-item nav-item-select {{ Request::is('login*') ? 'active' : '' }}">
