@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Auth;
+
 class RegisterController extends Controller
 {
     /*
@@ -52,9 +54,9 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'max:20', 'confirmed'],
             'bio' => ['string', 'max:1024'],
-            //'profile_image' => ['string', 'max:255'],
+            'profile_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'birth_date' => ['required', 'date'],
             'location' => ['required', 'string', 'min:5', 'max:128']
         ]);
@@ -68,12 +70,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // $request = request();
-        // $profileImage = $request->file('profile_picture');
-        // $profileImageSaveAsName = time() . Auth::id() . "-profile." . $profileImage->getClientOriginalExtension();
-        // $upload_path = storage_path('app/public/profile_images/') . Auth::id();
-        // $profile_image_url = $upload_path . $profileImageSaveAsName;
-        // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+        $request = request();
+        if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
+        {
+            $image = $data['profile_image'];
+            $imageSaveAsName = time() . "-profile." . $image->getClientOriginalExtension();
+            $request->profile_image->storeAs('', $imageSaveAsName, 'profile_upload');
+            $profile_image_url = $imageSaveAsName;
+            //$upload_path = storage_path('app/public/profile_images/') . Auth::id();
+            //$profile_image_url = $upload_path . $profileImageSaveAsName;
+            //$success = $profileImage->move($upload_path, $profileImageSaveAsName);
+        }
 
         return User::create([
             'first_name' => $data['first_name'],
@@ -83,7 +90,7 @@ class RegisterController extends Controller
             'birth_date' => $data['birth_date'],
             'location' => $data['location'],
             'bio' => $data['biography'],
-            //'profile_image' => $profile_image_url
+            'profile_image' => isset($profile_image_url) ? $profile_image_url : null
         ]);
     }
 }

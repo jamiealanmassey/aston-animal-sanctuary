@@ -15,23 +15,27 @@
             </ul>
             <div class="navbar-nav ml-auto mt-2 mt-lg-0">
                 @if (Auth::check())
-                <div class="dropdown show mr-2">
-                    <a class="btn dropdown-toggle primary-text" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {!! Auth::user()->first_name . ' ' . Auth::user()->last_name !!}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item primary-text" href="{{ url('profile') }}">Profile</a>
-                        <a class="dropdown-item primary-text" href="{{ url('privacy') }}">Privacy Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="{{ route('logout') }}" class="dropdown-item primary-text" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-                            Logout
+                    <div class="dropdown show mr-2">
+                        <a class="btn dropdown-toggle primary-text" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {!! Auth::user()->first_name . ' ' . Auth::user()->last_name !!}
                         </a>
-                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item primary-text" href="{{ url('profile/' . Auth::user()->id) }}">Profile</a>
+                            <a class="dropdown-item primary-text" href="{{ url('privacy') }}">Privacy Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ route('logout') }}" class="dropdown-item primary-text" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                Logout
+                            </a>
+                            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <img src="img/0_200.png" width="40px" class="d-none d-lg-block">
+                    @if (isset(Auth::user()->profile_image))
+                        <img src="{{ "profile_image/" . Auth::user()->profile_image }}" width="40px" class="d-none d-lg-block rounded">
+                    @else
+                        <img src="img/0_200.png" width="40px" class="d-none d-lg-block rounded">
+                    @endif
                 @else
                     <li class="nav-item nav-item-select {{ Request::is('login*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('login') }}">Login {!! Request::is('login*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>

@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'profile_upload' => [
+            'driver' => 'local',
+            'root' => public_path() . '/profile_image',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

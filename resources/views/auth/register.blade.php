@@ -3,9 +3,10 @@
 <div class="container mt-5 secondary-text">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
+            <div class="card mb-4">
+                <div class="card-header">
+                    {{ __('Register') }}
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -53,6 +54,9 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                                </small>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -82,7 +86,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
+                            <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{ old('location') }}" required>
@@ -107,17 +111,19 @@
                                 @endif
                             </div>
                         </div>
-                        {{--
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="profile-image" class="col-md-4 col-form-label text-md-right">{{ __('Upload Profile Picture') }}</label>
 
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="profile_image" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="profile_image" aria-describedby="inputGroupFileAddon01" onchange="$('#visual-file-label').html($(this).val().replace(/.*[\/\\]/, ''));">
+                                        <label id="visual-file-label" class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                     </div>
                                 </div>
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    We recommend an image of dimensions 512x512 and images must be < 2MB.
+                                </small>
 
                                 @if ($errors->has('profile_image'))
                                     <span class="invalid-feedback" role="alert">
@@ -125,7 +131,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
