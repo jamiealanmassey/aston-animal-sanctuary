@@ -77,9 +77,6 @@ class RegisterController extends Controller
             $imageSaveAsName = time() . "-profile." . $image->getClientOriginalExtension();
             $request->profile_image->storeAs('', $imageSaveAsName, 'profile_upload');
             $profile_image_url = $imageSaveAsName;
-            //$upload_path = storage_path('app/public/profile_images/') . Auth::id();
-            //$profile_image_url = $upload_path . $profileImageSaveAsName;
-            //$success = $profileImage->move($upload_path, $profileImageSaveAsName);
         }
 
         return User::create([

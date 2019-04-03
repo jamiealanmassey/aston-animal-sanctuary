@@ -15,13 +15,11 @@ Route::get('/', function () {
     return View::make('pages.landing');
 });
 
-Route::get('/adopt', function () {
-    return View::make('pages.adopt');
-});
-
 Route::get('/pending', function () {
     return View::make('pages.pending');
 });
+
+Route::get('/adopt', 'MainController@viewAdoptPage');
 
 // CRUD Routes for the concept of Pets
 Route::get('/pet/new', 'PetController@petNewPageView');

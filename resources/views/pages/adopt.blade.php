@@ -44,18 +44,25 @@
             <div class="col-lg-10 col-md-12">
                 <div class="container">
                     <div class="row">
-                        @for ($x = 0; $x < 12; $x++)
+                        @foreach ($pets as $pet)
                         <div class="col-lg-4 col-md-6 col-xs-12 mb-4">
                             <a href="#">
                                 <div class="card secondary-text">
                                     <img src="https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div class="card-body secondary-text">
+                                        <h4 class="text-center"><strong>{!! $pet->name !!}</strong></h4>
+                                        <p class="card-text">{!! $pet->description !!}</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush text-center">
+                                        <li class="list-group-item text-muted">{!! '<i class="fas fa-clock"></i> ' . $pet->age_years . ' years, ' . $pet->age_months . ' months old' !!}</li>
+                                    </ul>
+                                    <div class="card-footer secondary-text text-center">
+                                        <a class="btn btn-success" href="#">Adopt Me</a>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>
