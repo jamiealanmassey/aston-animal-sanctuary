@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item nav-item-select {{ Request::is('adopt*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('adopt') }}">Adpot a Pet {!! Request::is('adopt*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                    <a class="nav-link" href="{{ url('adopt') }}">Adopt a Pet {!! Request::is('adopt*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                 </li>
                 @if (Auth::check() && Auth::user()->admin > 0)
                     <li class="nav-item nav-item-select {{ Request::is('applicants*') ? 'active' : '' }}">

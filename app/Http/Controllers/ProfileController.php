@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use DB;
 use View;
 use Auth;
+use Validator;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -29,7 +31,7 @@ class ProfileController extends Controller
      */
     public function getProfilePage()
     {
-        return View::make('pages.profile', [ 'user' => Auth::user() ]);
+        return View::make('pages.profile.view', [ 'user' => Auth::user() ]);
     }
 
     /**
@@ -42,7 +44,7 @@ class ProfileController extends Controller
     {
         // TODO: Block giving results on profiles set to private
         $user = DB::table('users')->where('id', $id)->first();
-        return View::make('pages.profile', [ 'user' => $user ]);
+        return View::make('pages.profile.view', [ 'user' => $user ]);
     }
 
     /**
@@ -53,7 +55,7 @@ class ProfileController extends Controller
      */
     public function editProfileView()
     {
-
+        return View::make('pages.profile.edit', [ 'user' => Auth::user() ]);
     }
 
     /**
@@ -61,9 +63,32 @@ class ProfileController extends Controller
      *
      * @return View view based on outcome (should return to user's profile)
      */
-    public function editProfileUpdate()
+    public function editProfileUpdate(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'bio' => 'string|max:1024',
+            'birth_date' => 'required|date',
+            'location' => 'required|string|min:5|max:128',
+        ]);
 
+        if ($validator->fails()) {
+            return redirect('profile/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = User::where('id', Auth::user()->id);
+        $user->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'bio' => $request->input('biography'),
+            'birth_date' => $request->input('birth_date'),
+            'location' => $request->input('location'),
+        ]);
+
+        return redirect('/profile');
     }
 
     /**
