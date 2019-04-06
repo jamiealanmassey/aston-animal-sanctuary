@@ -55,9 +55,10 @@ return [
             'visibility' => 'public',
         ],
 
-        'profile_upload' => [
+        'upload' => [
             'driver' => 'local',
-            'root' => public_path() . '/profile_image',
+            'root' => public_path() . '/upload',
+            'visibility' => 'public'
         ],
 
         's3' => [

@@ -73,10 +73,10 @@ class RegisterController extends Controller
         $request = request();
         if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
         {
-            $image = $data['profile_image'];
-            $imageSaveAsName = time() . "-profile." . $image->getClientOriginalExtension();
-            $request->profile_image->storeAs('', $imageSaveAsName, 'profile_upload');
-            $profile_image_url = $imageSaveAsName;
+            $image = $request->file('profile_image');
+            $filename = time() . '_' . strtolower($data['first_name']) . '.' . $image->getClientOriginalExtension();
+            $location = 'img/profiles/';
+            $image->move($location, $filename);
         }
 
         return User::create([
@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'birth_date' => $data['birth_date'],
             'location' => $data['location'],
             'bio' => $data['biography'],
-            'profile_image' => isset($profile_image_url) ? $profile_image_url : null
+            'profile_image' => isset($location) ? $location . $filename : null
         ]);
     }
 }

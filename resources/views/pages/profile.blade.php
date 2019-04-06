@@ -10,7 +10,7 @@
         <div class="row mt-5 secondary-text">
             <div class="col-sm-12 col-md-3">
                 @if (isset($user->profile_image))
-                    <img src="{{ "../profile_image/" . $user->profile_image }}" width="256px" height="256px" class="d-none d-lg-block rounded">
+                    <img src="{{ $user->profile_image }}" width="256px" height="256px" class="d-none d-lg-block rounded">
                 @else
                     <img src="{{ "../img/0_200.png" }}" class="rounded" width="256px" height="256px">
                 @endif

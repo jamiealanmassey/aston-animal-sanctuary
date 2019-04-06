@@ -15,6 +15,11 @@ class MainController extends Controller
     {
     }
 
+    public function viewLandingPage()
+    {
+        return view('pages.landing');
+    }
+
     public function viewAdoptPage()
     {
         return view('pages.adopt', array('pets' => Pet::all()));
