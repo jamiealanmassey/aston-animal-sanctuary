@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Auth;
+use Log;
 
 class RegisterController extends Controller
 {
@@ -53,9 +55,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'max:20', 'confirmed'],
-            'bio' => ['string', 'max:1024'],
+            'bio' => ['string', 'max:512'],
             'profile_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'birth_date' => ['required', 'date'],
             'location' => ['required', 'string', 'min:5', 'max:128']
@@ -71,6 +73,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $request = request();
+        Log::debug('creating profile image in database');
         if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
         {
             $image = $request->file('profile_image');
@@ -79,6 +82,7 @@ class RegisterController extends Controller
             $image->move($location, $filename);
         }
 
+        Log::debug('creating user in database');
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -87,6 +91,7 @@ class RegisterController extends Controller
             'birth_date' => $data['birth_date'],
             'location' => $data['location'],
             'bio' => $data['biography'],
+            'admin' => 0,
             'profile_image' => isset($location) ? $location . $filename : null
         ]);
     }
