@@ -13,6 +13,7 @@ class Pet extends Model
         'age_years',
         'age_months',
         'description',
+        'profile_img',
     ];
 
     protected $hidden = [

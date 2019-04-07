@@ -48,7 +48,7 @@
                         <div class="col-lg-4 col-md-6 col-xs-12 mb-4">
                             <a href="#">
                                 <div class="card secondary-text">
-                                    <img src="https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png" class="card-img-top" alt="...">
+                                    <img src="{{ $pet->profile_img }}"  width="100%" height="100%" alt="...">
                                     <div class="card-body secondary-text">
                                         <h4 class="text-center"><strong>{!! $pet->name !!}</strong></h4>
                                         <p class="card-text">{!! $pet->description !!}</p>

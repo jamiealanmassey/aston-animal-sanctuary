@@ -41,27 +41,60 @@ class PetController extends Controller
                 'pet_breed' => 'required|string|max:64',
                 'pet_age_years' => 'required|integer',
                 'pet_age_months' => 'required|integer',
-                'pet_description' => 'required|string'
+                'pet_description' => 'required|string',
+                'profile_image' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048' ],
             ]);
 
-            if ($validator->fails()) {
+            if ($validator->fails())
+            {
                 return redirect('/pet/new')
                     ->withErrors($validator)
                     ->withInput();
             }
 
             $pet = Pet::create([
-                'name' => $request->input('pet_name'),
-                'type' => $request->input('pet_type'),
-                'breed' => $request->input('pet_breed'),
-                'age_years' => $request->input('pet_age_years'),
-                'age_months' => $request->input('pet_age_months'),
-                'description' => $request->input('pet_description'),
+                'name' => $request->pet_name,
+                'type' => $request->pet_type,
+                'breed' => $request->pet_breed,
+                'age_years' => $request->pet_age_years,
+                'age_months' => $request->pet_age_months,
+                'description' => $request->pet_description,
+                'profile_img' => 'img/0_200.png',
                 'availability' => 1,
             ]);
 
+            if ($pet->exists())
+            {
+                if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
+                {
+                    $img = $request->file('profile_image');
+                    $img_name = time() . '_' . 'profile.' . $img->getClientOriginalExtension();
+                    $img_loc = 'img/profiles/' . $request->type . '/' . $pet->id . '/';
+                    $img->move($img_loc, $img_name);
+
+                    // Update the Pet record
+                    $pet->profile_img = $img_loc . $img_name;
+                    $pet->save();
+                }
+            }
+
+            /*if ($pet->exists())
+            {
+                if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
+                {
+                    $url = 'https://source.unsplash.com/featured/?' . $request->type;
+                    $img = 'img/profiles/' . $request->type . '/' . $pet->id . '/';
+                    $img_result = file_put_contents($img . time() . $request->type . 'profile.jpg', file_get_contents($url));
+                }
+
+                if ($img_result)
+                {
+                    $pet->profile_img = $img
+                }
+            }*/
+
             return ($pet->exists()) ?
-                view('pages.pets.view') :
+                view('pages.pets.view', [ 'pet' => $pet ]) :
                 view('pages.pets.new');
         }
 

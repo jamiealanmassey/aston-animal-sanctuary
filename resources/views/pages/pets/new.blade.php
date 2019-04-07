@@ -8,7 +8,7 @@
                     {{ __('Add New Pet') }}
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/pet/new') }}">
+                    <form method="POST" action="{{ url('/pet/new') }}" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group row">
                             <label for="pet-type" class="col-md-4 col-form-label text-md-right">{{ __('Pet Type') }}</label>
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="form-group row mb-4">
-                            <label for="profile-image" class="col-md-4 col-form-label text-md-right">{{ __('Upload Pictures') }}</label>
+                            <label for="profile-image" class="col-md-4 col-form-label text-md-right">{{ __('Upload Profile Picture') }}</label>
 
                             <div class="col-md-6">
                                 <div class="input-group">
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                                 <small id="uploadHelpBlock" class="form-text text-muted">
-                                   All images must be < 2MB.
+                                    We recommend an image of dimensions 512x512 and images must be < 2MB.
                                 </small>
 
                                 @if ($errors->has('profile_image'))
@@ -136,6 +136,9 @@
                                 </button>
                             </div>
                         </div>
+                        @if ($errors->any())
+                            {{ implode('', $errors->all('<div>:message</div>')) }}
+                        @endif
                     </form>
                 </div>
             </div>

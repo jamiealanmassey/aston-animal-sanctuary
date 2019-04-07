@@ -43,7 +43,7 @@
                     @if (isset(Auth::user()->profile_image))
                         <img src="{{ asset(Auth::user()->profile_image) }}" width="40px" height="40px" class="d-none d-lg-block rounded">
                     @else
-                        <img src="{{ asset('img/0_200.png') }}" width="40px" class="d-none d-lg-block rounded">
+                        <img src="{{ asset('img/0_200.png') }}" width="40px" height="40px" class="d-none d-lg-block rounded">
                     @endif
                 @else
                     <li class="nav-item nav-item-select {{ Request::is('login*') ? 'active' : '' }}">
