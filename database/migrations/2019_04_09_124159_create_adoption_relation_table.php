@@ -13,12 +13,12 @@ class CreateAdoptionRelationTable extends Migration
      */
     public function up()
     {
-        Schema::create('adoption_relation', function (Blueprint $table) {
+        Schema::create('pet_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('pets_id');
+            $table->unsignedBigInteger('pet_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pets_id')->references('id')->on('pets');
+            $table->foreign('pet_id')->references('id')->on('pets');
             $table->integer('adoption_status')->default(0); // pending, accepted, rejected
             $table->timestamps();
         });

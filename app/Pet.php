@@ -19,4 +19,9 @@ class Pet extends Model
     protected $hidden = [
         'availablity',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(Pet::class);
+    }
 }
