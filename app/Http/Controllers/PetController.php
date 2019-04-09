@@ -6,7 +6,9 @@ use View;
 use Auth;
 use Config;
 use Validator;
+use DB;
 
+use App\User;
 use App\Pet;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -107,7 +109,13 @@ class PetController extends Controller
     public function viewPet($id)
     {
         $pet = Pet::where('id', $id)->first();
-        return View::make('pages.pets.view', [ 'pet' => $pet ]);
+        $applicants = array();
+        $filter = DB::table('pet_user')->where('pet_id', $id)->get();
+        foreach ($filter as $element) {
+            $applicants[] = User::find($element->user_id);
+        }
+
+        return View::make('pages.pets.view', [ 'pet' => $pet, 'applicants' =>  $applicants]);
     }
 
     public function editPetView($id)
