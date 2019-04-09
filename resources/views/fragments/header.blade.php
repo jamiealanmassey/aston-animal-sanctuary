@@ -11,7 +11,7 @@
                 </li>
                 @if (Auth::check() && Auth::user()->admin > 0)
                     <li class="nav-item nav-item-select {{ Request::is('applicants*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('applicants') }}">View Applicants {!! Request::is('applicants*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        <a class="nav-link" href="{{ url('applicants/view/') }}">View Applicants {!! Request::is('applicants*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                     </li>
                     <li class="nav-item nav-item-select {{ Request::is('pet*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('pet/new/') }}">Add New Pet {!! Request::is('pet*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>

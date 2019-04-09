@@ -33,8 +33,9 @@ Route::get('/profile/view', 'ProfileController@getProfilePage'); // implemented
 Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+'); // implemented/more features
 Route::get('/profile/pending/view', 'ProfileController@pendingProfileView'); // TODO
 
-Route::get('/applicants/view', 'ApplicantController@viewApplicants');
-Route::put('/applicants/update/{id}', 'ApplicationController@updateApplicants');
+Route::get('/applicants/view', 'ApplicantController@viewApplicants'); // implemented
+Route::put('/applicants/accept/{id}', 'ApplicantController@acceptApplicant');
+Route::put('/applicants/reject/{id}', 'ApplicantController@rejectApplicant');
 
 // Inject authentication routes
 Auth::routes();

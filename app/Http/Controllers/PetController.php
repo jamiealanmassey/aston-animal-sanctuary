@@ -88,7 +88,13 @@ class PetController extends Controller
 
     public function viewPetRequest($id)
     {
-        Auth::user()->pets()->syncWithoutDetaching([$id]);
+        Auth::user()->pets()->syncWithoutDetaching([$id =>
+            [
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
+
         return redirect()->back();
     }
 
