@@ -24,14 +24,14 @@ class PetController extends Controller
         $this->middleware('auth');
     }
 
-    public function petNewPageView()
+    public function newPetView()
     {
         return (Auth::user()->admin) ?
             view('pages.pets.new', array('animal_types' => Config::get('animaltypes'), 'animal_breeds' => Config::get('animalbreeds'))) :
             view('pages.landing');
     }
 
-    public function petNewPageCreate(Request $request)
+    public function newPetCreate(Request $request)
     {
         if (Auth::user()->admin)
         {
@@ -78,21 +78,6 @@ class PetController extends Controller
                 }
             }
 
-            /*if ($pet->exists())
-            {
-                if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
-                {
-                    $url = 'https://source.unsplash.com/featured/?' . $request->type;
-                    $img = 'img/profiles/' . $request->type . '/' . $pet->id . '/';
-                    $img_result = file_put_contents($img . time() . $request->type . 'profile.jpg', file_get_contents($url));
-                }
-
-                if ($img_result)
-                {
-                    $pet->profile_img = $img
-                }
-            }*/
-
             return ($pet->exists()) ?
                 view('pages.pets.view', [ 'pet' => $pet ]) :
                 view('pages.pets.new');
@@ -101,17 +86,22 @@ class PetController extends Controller
         return view('pages.landing');
     }
 
-    public function petPageView($id)
+    public function viewPetRequest($id) {
+
+    }
+
+    public function viewPet($id)
+    {
+        $pet = Pet::where('id', $id)->first();
+        return View::make('pages.pets.view', [ 'pet' => $pet ]);
+    }
+
+    public function editPetView($id)
     {
         return View::make('pages.landing');
     }
 
-    public function editPetPageUpdate($id)
-    {
-        return View::make('pages.landing');
-    }
-
-    public function editPetPageView($id)
+    public function editPetUpdate($id)
     {
         return View::make('pages.landing');
     }

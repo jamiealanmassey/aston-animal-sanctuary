@@ -11,28 +11,26 @@
 |
 */
 
+// Default main web routes
 Route::get('/', 'MainController@viewLandingPage');
-
-/*Route::get('/pending', function () {
-    return View::make('pages.pending');
-});*/
-
+Route::get('/pending', 'MainController@viewPending');
 Route::get('/adopt', 'MainController@viewAdoptPage');
 
 // CRUD Routes for the concept of Pets
-Route::get('/pet/new', 'PetController@petNewPageView');
-Route::post('/pet/new', 'PetController@petNewPageCreate');
-Route::get('/pet/{id}', 'PetController@petPageView')->where('id', '[0-9]+');
-Route::get('/pet/edit/{id}', 'PetController@editPetPageView')->where('id', '[0-9]+');
-Route::put('/pet/edit/{id}', 'PetController@editPetPageUpdate')->where('id', '[0-9]+');
+Route::get('/pet/new', 'PetController@newPetView');
+Route::post('/pet/new', 'PetController@newPetCreate');
+Route::get('/pet/view/{id}', 'PetController@viewPet')->where('id', '[0-9]+');
+Route::put('/pet/view/request/{id}', 'PetController@viewPetRequest')->where('id', '[0-9]+');
+Route::get('/pet/edit/{id}', 'PetController@editPetView')->where('id', '[0-9]+');
+Route::put('/pet/edit/{id}', 'PetController@editPetUpdate')->where('id', '[0-9]+');
 Route::delete('/pet/delete/{id}', 'PetController@deletePet')->where('id', '[0-9]+');
 
 // CRUD Routes for the concept of Profiles
 Route::delete('profile/delete', 'ProfileController@destroyProfile');
 Route::put('profile/edit', 'ProfileController@editProfileUpdate');
 Route::get('profile/edit', 'ProfileController@editProfileView');
-Route::get('profile', 'ProfileController@getProfilePage');
-Route::get('profile/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+');
+Route::get('profile/view', 'ProfileController@getProfilePage');
+Route::get('profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+');
 
 // Inject authentication routes
 Auth::routes();
