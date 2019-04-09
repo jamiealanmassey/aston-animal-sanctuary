@@ -100,4 +100,9 @@ class ProfileController extends Controller
     {
 
     }
+
+    public function pendingProfileView()
+    {
+        return View::make('pages.pending.view', [ 'user' => Auth::user() ]);
+    }
 }

@@ -20,13 +20,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <form method="POST" action="{{ url('/pet/view/request/' . $pet->id) }}">
-                    @csrf
-                    <button type="button" class="btn btn-success btn-block">Request Adoption</button>
-                </form>
+                @include('fragments.pet.request', [ 'id' => $pet->id ])
                 @if (Auth::check() && Auth::user()->admin)
                     <div class="mt-2">
-                        <a href="">
+                        <a href="{{ url('pet/edit/' . $pet->id) }}">
                             <button class="btn btn-default btn-block">Edit Pet</button>
                         </a>
                     </div>

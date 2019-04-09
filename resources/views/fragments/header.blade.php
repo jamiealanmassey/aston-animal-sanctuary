@@ -18,7 +18,7 @@
                     </li>
                 @elseif (Auth::check())
                     <li class="nav-item nav-item-select {{ Request::is('pending*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('pending') }}">Pending Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        <a class="nav-link" href="{{ url('profile/pending/view/') }}">Pending Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                     </li>
                 @endif
             </ul>
