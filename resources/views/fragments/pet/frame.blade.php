@@ -1,7 +1,9 @@
 <div class="col-lg-4 col-md-6 col-xs-12 mb-4">
     <a href="{{ url('pet/view/' . $pet->id) }}">
         <div class="card secondary-text">
-            <img src="{{ $pet->profile_img }}"  width="100%" height="100%" alt="...">
+            <div class="card-img-top">
+                <img src="{{ $pet->profile_img }}" alt="image of {{ $pet->name }}" />
+            </div>
             <div class="card-body secondary-text">
                 <h4 class="text-center"><strong>{!! $pet->name !!}</strong></h4>
                 <p class="card-text">{!! $pet->description !!}</p>

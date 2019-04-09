@@ -45,7 +45,7 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($pets as $pet)
-                        @include('fragments.pet.frame', [ 'pet' => $pet ]);
+                        @include('fragments.pet.frame', [ 'pet' => $pet ])
                         @endforeach
                     </div>
                 </div>

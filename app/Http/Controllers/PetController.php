@@ -86,8 +86,16 @@ class PetController extends Controller
         return view('pages.landing');
     }
 
-    public function viewPetRequest($id) {
+    public function viewPetRequest($id)
+    {
+        Auth::user()->pets()->syncWithoutDetaching([$id]);
+        return redirect()->back();
+    }
 
+    public function viewPetCancel($id)
+    {
+        Auth::user()->pets()->detach($id);
+        return redirect()->back();
     }
 
     public function viewPet($id)

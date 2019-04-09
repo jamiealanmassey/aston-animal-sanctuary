@@ -98,11 +98,17 @@ class ProfileController extends Controller
      */
     public function destroyProfile()
     {
-
+        // TODO
     }
 
     public function pendingProfileView()
     {
-        return View::make('pages.pending.view', [ 'user' => Auth::user() ]);
+        $requests = DB::table('pet_user')->get();
+        return View::make('pages.pending.view', [ 'requests' => $requests ]);
+    }
+
+    public function pendingProfileUpdate($id)
+    {
+        // TODO
     }
 }

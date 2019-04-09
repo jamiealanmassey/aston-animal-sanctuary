@@ -12,25 +12,29 @@
 */
 
 // Default main web routes
-Route::get('/', 'MainController@viewLandingPage');
-Route::get('/adopt', 'MainController@viewAdoptPage');
+Route::get('/', 'MainController@viewLandingPage'); // implemented
+Route::get('/adopt', 'MainController@viewAdoptPage'); // implemented/more features
 
 // CRUD Routes for the concept of Pets
-Route::get('/pet/new', 'PetController@newPetView');
-Route::post('/pet/new', 'PetController@newPetCreate');
-Route::get('/pet/view/{id}', 'PetController@viewPet')->where('id', '[0-9]+');
-Route::post('/pet/view/request/{id}', 'PetController@viewPetRequest')->where('id', '[0-9]+');
-Route::get('/pet/edit/{id}', 'PetController@editPetView')->where('id', '[0-9]+');
-Route::put('/pet/edit/{id}', 'PetController@editPetUpdate')->where('id', '[0-9]+');
-Route::delete('/pet/delete/{id}', 'PetController@deletePet')->where('id', '[0-9]+');
+Route::get('/pet/new', 'PetController@newPetView'); // implemented
+Route::post('/pet/new', 'PetController@newPetCreate'); // implemented
+Route::get('/pet/view/{id}', 'PetController@viewPet')->where('id', '[0-9]+'); // implemented
+Route::post('/pet/view/request/{id}', 'PetController@viewPetRequest')->where('id', '[0-9]+'); // TODO
+Route::post('/pet/view/cancel/{id}', 'PetController@viewPetCancel')->where('id', '[0-9]+');
+Route::get('/pet/edit/{id}', 'PetController@editPetView')->where('id', '[0-9]+'); // TODO
+Route::put('/pet/edit/{id}', 'PetController@editPetUpdate')->where('id', '[0-9]+'); // TODO
+Route::delete('/pet/delete/{id}', 'PetController@deletePet')->where('id', '[0-9]+'); // TODO
 
 // CRUD Routes for the concept of Profiles
-Route::delete('/profile/delete', 'ProfileController@destroyProfile');
-Route::put('/profile/edit', 'ProfileController@editProfileUpdate');
-Route::get('/profile/edit', 'ProfileController@editProfileView');
-Route::get('/profile/view', 'ProfileController@getProfilePage');
-Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+');
-Route::get('/profile/pending/view', 'ProfileController@pendingProfileView');
+Route::delete('/profile/delete', 'ProfileController@destroyProfile'); // TODO
+Route::put('/profile/edit', 'ProfileController@editProfileUpdate'); // implemented
+Route::get('/profile/edit', 'ProfileController@editProfileView'); // implemented
+Route::get('/profile/view', 'ProfileController@getProfilePage'); // implemented
+Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+'); // implemented/more features
+Route::get('/profile/pending/view', 'ProfileController@pendingProfileView'); // TODO
+
+Route::get('/applicants/view', 'ApplicantController@viewApplicants');
+Route::put('/applicants/update/{id}', 'ApplicationController@updateApplicants');
 
 // Inject authentication routes
 Auth::routes();

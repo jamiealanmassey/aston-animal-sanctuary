@@ -16,15 +16,14 @@
     }
     @endphp
     @if (isset($contains) && $contains)
-        <form method="POST" action="{{ url('/pet/view/unrequest/' . $id) }}">
+        <form method="POST" action="{{ url('/pet/view/cancel/' . $id) }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="_method" value="PUT">
-            <button type="button" class="btn btn-success btn-block">Cancel Request</button>
+            <button type="submit" class="btn btn-danger btn-block">Cancel Request</button>
         </form>
     @else
         <form method="POST" action="{{ url('/pet/view/request/' . $id) }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button type="button" class="btn btn-success btn-block">Request Adoption</button>
+            <button type="submit" class="btn btn-success btn-block">Request Adoption</button>
         </form>
     @endif
 @endif
