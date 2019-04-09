@@ -9,13 +9,13 @@
                 $pet = \App\Pet::find($request->pet_id);
             @endphp
             <div class="col-md-12 col-lg-6 mb-4">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body text-center">
-                        <a href="{{ url('/profile/view/' . $user->id) }}" target="_blank">
-                            <img class="img-overflow rounded mr-2" src="{{ asset($user->profile_image) }}" height="128px" width="128px">
+                        <a href="{{ url('/profile/view/' . $user->id) }}">
+                            <img class="img-overflow rounded shadow mr-3" src="{{ asset($user->profile_image) }}" height="128px" width="128px">
                         </a>
-                        <a href="{{ url('/pet/view/' . $pet->id) }}" target="_blank">
-                            <img class="img-overflow rounded ml-2" src="{{ asset($pet->profile_img) }}" height="128px" width="128px">
+                        <a href="{{ url('/pet/view/' . $pet->id) }}">
+                            <img class="img-overflow rounded shadow ml-3" src="{{ asset($pet->profile_img) }}" height="128px" width="128px">
                         </a>
                         <div class="container mt-3">
                             <h4><strong><span class="emphasize">{!! $user->first_name . ' ' . $user->last_name !!}</span> wants <span class="emphasize">{!! $pet->name !!}</span></strong></h4>
