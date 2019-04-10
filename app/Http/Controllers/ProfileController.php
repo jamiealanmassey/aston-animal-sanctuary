@@ -101,10 +101,10 @@ class ProfileController extends Controller
         // TODO
     }
 
-    public function pendingProfileView()
+    public function applicationsView()
     {
-        $requests = DB::table('pet_user')->get();
-        return View::make('pages.pending.view', [ 'requests' => $requests ]);
+        $applications = DB::table('pet_user')->where('user_id', Auth::user()->id)->get();
+        return View::make('pages.applications.view', [ 'applications' => $applications ]);
     }
 
     public function pendingProfileUpdate($id)

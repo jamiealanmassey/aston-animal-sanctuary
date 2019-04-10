@@ -10,15 +10,15 @@
                     <a class="nav-link" href="{{ url('adopt') }}">Adopt a Pet {!! Request::is('adopt*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                 </li>
                 @if (Auth::check() && Auth::user()->admin > 0)
-                    <li class="nav-item nav-item-select {{ Request::is('applicants*') ? 'active' : '' }}">
+                    <li class="nav-item nav-item-select {{ Request::is('applicants/*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('applicants/view/') }}">View Applicants {!! Request::is('applicants*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                     </li>
-                    <li class="nav-item nav-item-select {{ Request::is('pet*') ? 'active' : '' }}">
+                    <li class="nav-item nav-item-select {{ Request::is('pet/*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('pet/new/') }}">Add New Pet {!! Request::is('pet*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                     </li>
                 @elseif (Auth::check())
-                    <li class="nav-item nav-item-select {{ Request::is('pending*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('profile/pending/view/') }}">Pending Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                    <li class="nav-item nav-item-select {{ Request::is('profile/applications/*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('profile/applications/view/') }}">My Applications {!! Request::is('pending*') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                     </li>
                 @endif
             </ul>

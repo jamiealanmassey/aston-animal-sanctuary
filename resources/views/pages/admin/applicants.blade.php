@@ -32,12 +32,16 @@
                                 </div>
                             </div>
                             <div class="container-fluid mt-3">
-                                <a href="#">
-                                    <div class="btn btn-success mr-1">Accept Applicant</div>
-                                </a>
-                                <a href="#">
-                                    <div class="btn btn-danger ml-1">Reject Applicant</div>
-                                </a>
+                                <form method="POST" action="{{ url('/applicants/accept/' . $user->id . '?pet_id=' . $pet->id) }}" class="mb-2">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <button type="submit" class="btn btn-success btn-block">Accept Applicant</button>
+                                </form>
+                                <form method="POST" action="{{ url('/applicants/reject/' . $user->id . '?pet_id=' . $pet->id) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <button type="submit" class="btn btn-danger btn-block">Reject Applicant</button>
+                                </form>
                             </div>
                         </div>
                     </div>

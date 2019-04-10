@@ -19,8 +19,8 @@ Route::get('/adopt', 'MainController@viewAdoptPage'); // implemented/more featur
 Route::get('/pet/new', 'PetController@newPetView'); // implemented
 Route::post('/pet/new', 'PetController@newPetCreate'); // implemented
 Route::get('/pet/view/{id}', 'PetController@viewPet')->where('id', '[0-9]+'); // implemented
-Route::post('/pet/view/request/{id}', 'PetController@viewPetRequest')->where('id', '[0-9]+'); // TODO
-Route::post('/pet/view/cancel/{id}', 'PetController@viewPetCancel')->where('id', '[0-9]+');
+Route::post('/pet/view/request/{id}', 'PetController@viewPetRequest')->where('id', '[0-9]+'); // implemented
+Route::post('/pet/view/cancel/{id}', 'PetController@viewPetCancel')->where('id', '[0-9]+'); // implemented
 Route::get('/pet/edit/{id}', 'PetController@editPetView')->where('id', '[0-9]+'); // TODO
 Route::put('/pet/edit/{id}', 'PetController@editPetUpdate')->where('id', '[0-9]+'); // TODO
 Route::delete('/pet/delete/{id}', 'PetController@deletePet')->where('id', '[0-9]+'); // TODO
@@ -31,11 +31,11 @@ Route::put('/profile/edit', 'ProfileController@editProfileUpdate'); // implement
 Route::get('/profile/edit', 'ProfileController@editProfileView'); // implemented
 Route::get('/profile/view', 'ProfileController@getProfilePage'); // implemented
 Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+'); // implemented/more features
-Route::get('/profile/pending/view', 'ProfileController@pendingProfileView'); // TODO
+Route::get('/profile/applications/view', 'ProfileController@applicationsView'); // implemented/need to test 'adoption_status'
 
 Route::get('/applicants/view', 'ApplicantController@viewApplicants'); // implemented
-Route::put('/applicants/accept/{id}', 'ApplicantController@acceptApplicant');
-Route::put('/applicants/reject/{id}', 'ApplicantController@rejectApplicant');
+Route::put('/applicants/accept/{id}', 'ApplicantController@acceptApplicant'); // TODO
+Route::put('/applicants/reject/{id}', 'ApplicantController@rejectApplicant'); // TODO
 
 // Inject authentication routes
 Auth::routes();

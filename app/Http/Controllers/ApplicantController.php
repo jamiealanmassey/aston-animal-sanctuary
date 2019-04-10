@@ -6,6 +6,8 @@ use Auth;
 use DB;
 use View;
 
+use App\User;
+use App\Pet;
 use Illuminate\Http\Request;
 
 class ApplicantController extends Controller
@@ -30,17 +32,31 @@ class ApplicantController extends Controller
         return View::make('pages.admin.applicants', [ 'requests' => $requests ]);
     }
 
-    public function acceptApplicant($id)
+    public function acceptApplicant(Request $request, $id)
     {
-        if (!Auth::user()->admin)
-            return redirect()->back();
+        $this->updateAdoptionStatus($id, $request->get('pet_id', null), 2);
+        return redirect()->back();
     }
 
-    public function rejectApplicant($id)
+    public function rejectApplicant(Request $request, $id)
     {
-        if (!Auth::user()->admin)
-            return redirect()->back();
+        $this->updateAdoptionStatus($id, $request->get('pet_id', null), 1);
+        return redirect()->back();
+    }
 
+    private function updateAdoptionStatus($user_id, $pet_id, $status)
+    {
+        if (!Auth::user()->admin || $user_id == null || $pet_id == null)
+        {
+            $error_msg = 'Could not update adoption status for user ';
+            $error_msg = $error_msg . $user_id . ' against pet ' . $pet_id . '.\n';
+            $error_msg = $error_msg . 'Admin status: ' . Auth::user()->admin;
+            Log::error($error_msg);
+            return;
+        }
 
+        User::find($user_id)->pets()->sync([
+            $pet_id => [ 'adoption_status' => $status ]
+        ]);
     }
 }
