@@ -11,8 +11,9 @@
             ->where('adoption_status', '=', 2)
             ->get();
 
-        $requested = Auth::user()->pets()
+        $requested = DB::table('pet_user')
             ->where('pet_id', $id)
+            ->where('user_id', Auth::user()->id)
             ->first();
 
         /**$adoptions = Auth::user()->pets;

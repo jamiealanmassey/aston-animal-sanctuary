@@ -45,9 +45,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer secondary-text text-center">
-                        <h6><strong class="text-muted"><i>Request made {!! $request->created_at !!}</i></strong></h6>
-                    </div>
                 </div>
             </div>
         @endforeach

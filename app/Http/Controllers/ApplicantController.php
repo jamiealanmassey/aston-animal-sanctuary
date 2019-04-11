@@ -61,11 +61,17 @@ class ApplicantController extends Controller
                 ->where('adoption_status', '=', 0)
                 ->where('user_id', '!=', $user_id)
                 ->where('pet_id', '=', $pet_id)
-                ->update([ 'adoption_status' => 1 ]);
+                ->update([
+                    'adoption_status' => 1,
+                    'updated_at' => now()
+                ]);
         }
 
         $pets = User::find($user_id)->pets();
         $pets->detach($pet_id);
-        $pets->attach($pet_id, [ 'adoption_status' => $status ]);
+        $pets->attach($pet_id, [
+            'updated_at' => now(),
+            'adoption_status' => $status
+        ]);
     }
 }
