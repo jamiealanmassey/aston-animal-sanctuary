@@ -32,7 +32,7 @@
                 <button type="submit" class="btn btn-danger btn-block">Cancel Request</button>
             </form>
         @elseif ($requested->adoption_status == 1)
-            <div class="btn btn-warning btn-block disabled">Adoption Rejected</div>
+            <div class="btn btn-danger btn-block disabled">Adoption Rejected</div>
         @elseif ($requested->adoption_status == 2)
             <div class="btn btn-success btn-block disabled">Adoption Approved</div>
         @endif

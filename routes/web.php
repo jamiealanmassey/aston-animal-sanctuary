@@ -23,7 +23,7 @@ Route::post('/pet/view/request/{id}', 'PetController@viewPetRequest')->where('id
 Route::post('/pet/view/cancel/{id}', 'PetController@viewPetCancel')->where('id', '[0-9]+'); // implemented
 Route::get('/pet/edit/{id}', 'PetController@editPetView')->where('id', '[0-9]+'); // TODO
 Route::put('/pet/edit/{id}', 'PetController@editPetUpdate')->where('id', '[0-9]+'); // TODO
-Route::delete('/pet/delete/{id}', 'PetController@deletePet')->where('id', '[0-9]+'); // TODO
+Route::delete('/pet/delete/{id}', 'PetController@deletTODOePet')->where('id', '[0-9]+'); // TODO
 
 // CRUD Routes for the concept of Profiles
 Route::delete('/profile/delete', 'ProfileController@destroyProfile'); // TODO
@@ -34,8 +34,8 @@ Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('i
 Route::get('/profile/applications/view', 'ProfileController@applicationsView'); // implemented/need to test 'adoption_status'
 
 Route::get('/applicants/view', 'ApplicantController@viewApplicants'); // implemented
-Route::put('/applicants/accept/{id}', 'ApplicantController@acceptApplicant'); // TODO
-Route::put('/applicants/reject/{id}', 'ApplicantController@rejectApplicant'); // TODO
+Route::put('/applicants/accept/{id}', 'ApplicantController@acceptApplicant'); // implemented
+Route::put('/applicants/reject/{id}', 'ApplicantController@rejectApplicant'); // implemented
 
 // Inject authentication routes
 Auth::routes();
