@@ -54,8 +54,8 @@
     </div>
 </div>
 @elseif (isset($requests) && count($requests) == 0)
-    <h1 class="text-center mt-5"><strong>Invalid search query</strong></h1>
-@else
     <h1 class="text-center mt-5"><strong>There are currently no Applicants</strong></h1>
+@else
+    <h1 class="text-center mt-5"><strong>Invalid search query</strong></h1>
 @endif
 @endsection

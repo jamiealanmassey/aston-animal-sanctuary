@@ -4,8 +4,8 @@
         @if (isset($applications) && count($applications) > 0)
             <div class="row">
             @foreach ($applications as $application)
-                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <div class="card">
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex align-items-stretch">
+                    <div class="card mx-auto">
                         <div class="card-body mx-auto">
                             <div class="container-fluid mx-auto">
                                 @php

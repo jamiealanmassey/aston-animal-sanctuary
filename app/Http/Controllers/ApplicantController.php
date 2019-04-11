@@ -34,7 +34,7 @@ class ApplicantController extends Controller
 
     public function acceptApplicant(Request $request, $id)
     {
-        $this->updateAdoptionStatus($id, $request->get('pet_id', null), 2);
+        $this->updateAdoptionStatus($id, $request->get('pet_id', null), 2, true);
         return redirect()->back();
     }
 
@@ -44,7 +44,7 @@ class ApplicantController extends Controller
         return redirect()->back();
     }
 
-    private function updateAdoptionStatus($user_id, $pet_id, $status)
+    private function updateAdoptionStatus($user_id, $pet_id, $status, $reject_others = false)
     {
         if (!Auth::user()->admin || $user_id == null || $pet_id == null)
         {
@@ -55,8 +55,17 @@ class ApplicantController extends Controller
             return;
         }
 
-        User::find($user_id)->pets()->sync([
-            $pet_id => [ 'adoption_status' => $status ]
-        ]);
+        if ($reject_others)
+        {
+            DB::table('pet_user')
+                ->where('adoption_status', '=', 0)
+                ->where('user_id', '!=', $user_id)
+                ->where('pet_id', '=', $pet_id)
+                ->update([ 'adoption_status' => 1 ]);
+        }
+
+        $pets = User::find($user_id)->pets();
+        $pets->detach($pet_id);
+        $pets->attach($pet_id, [ 'adoption_status' => $status ]);
     }
 }
