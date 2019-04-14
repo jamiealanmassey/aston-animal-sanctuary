@@ -14,23 +14,18 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col bg-light-2 text-center">
-            <h1 class="mt-4"><strong>Super Star Pets</strong></h1>
-        </div>
-    </div>
-    <div class="row">
+<div class="container-fluid landing-content">
+    <div class="row landing-content mb-4">
         @for ($x = 0; $x < 4; $x++)
             <div class="col-lg-3 col-md-6 col-xs-12 bg-light-2 text-center secondary-text overflow-hidden">
-                <div class="mr-md-3 pt-3 pt-md-5 mb-5">
-                    <h2 class="display-5">Pet Name #{{ $x+1 }}</h2>
-                    <p class="lead">Please adopt this cute animal before they are adopted by someone else!
-                    <p class="lead"><h6><strong>CLICK ON ME TO FIND OUT MORE</strong></h6></p>
-                    <a href="#">
-                        <img src="img/featured/featured_{{ $x+1 }}.jpg" class="rounded-circle mt-2" width="150px" height="150px">
-                    </a>
-                </div>
+                <a href="#" class="secondary-text">
+                    <div class="card p-3">
+                        <h2 class="display-5">Pet Name #{{ $x+1 }}</h2>
+                        <p class="lead">Please adopt this cute animal before they are adopted by someone else!
+                        <p class="lead"><h6><strong>CLICK ON ME TO FIND OUT MORE</strong></h6></p>
+                        <img src="img/featured/featured_{{ $x+1 }}.jpg" class="rounded-circle mt-2 mb-4 mx-auto" width="150px" height="150px">
+                    </div>
+                </a>
             </div>
         @endfor
     </div>
