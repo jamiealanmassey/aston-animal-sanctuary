@@ -83,7 +83,7 @@
                             <label for="pet-age-months" class="col-md-4 col-form-label text-md-right">{{ __('Age Months') }}</label>
 
                             <div class="col-md-6">
-                                <input id="pet-age-months" type="number" min="0" max="12" class="form-control{{ $errors->has('pet_age_months') ? ' is-invalid' : '' }}" name="pet_age_months" value="{{ old('pet_age_months') }}" required autofocus>
+                                <input id="pet-age-months" type="number" min="0" max="11" class="form-control{{ $errors->has('pet_age_months') ? ' is-invalid' : '' }}" name="pet_age_months" value="{{ old('pet_age_months') }}" required autofocus>
 
                                 @if ($errors->has('pet_age_months'))
                                     <span class="invalid-feedback" role="alert">

@@ -42,7 +42,7 @@ class PetController extends Controller
                 'pet_type' => 'required|string|max:64',
                 'pet_breed' => 'required|string|max:64',
                 'pet_age_years' => 'required|integer',
-                'pet_age_months' => 'required|integer',
+                'pet_age_months' => 'required|integer|min:0|max:11',
                 'pet_description' => 'required|string',
                 'profile_image' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048' ],
             ]);
@@ -81,11 +81,11 @@ class PetController extends Controller
             }
 
             return ($pet->exists()) ?
-                view('pages.pets.view', [ 'pet' => $pet ]) :
-                view('pages.pets.new');
+                View::make('pages.pets.view', [ 'pet' => $pet ]) :
+                View::make('pages.pets.new');
         }
 
-        return view('pages.landing');
+        return redirect('/');
     }
 
     public function viewPetRequest($id)
@@ -120,12 +120,56 @@ class PetController extends Controller
 
     public function editPetView($id)
     {
-        return View::make('pages.landing');
+        if (Auth::user()->admin)
+        {
+            $pet = Pet::where('id', $id)->first();
+            return View::make('pages.pets.edit', [
+                'pet' => $pet,
+                'animal_types' => Config::get('animaltypes'),
+                'animal_breeds' => Config::get('animalbreeds')
+            ]);
+        }
+
+        return (!Auth::user()->admin) ?
+            redirect('/') :
+            redirect('/login');
     }
 
-    public function editPetUpdate($id)
+    public function validatePet(Request $request)
     {
-        return View::make('pages.landing');
+
+    }
+
+    public function editPetUpdate(Request $request)
+    {
+        if (!Auth::user()->admin) return redirect('/');
+
+        $validator = Validator::make($request->all(), [
+            'pet_name' => 'required|string|max:60',
+            'pet_type' => 'required|string|max:64',
+            'pet_breed' => 'required|string|max:64',
+            'pet_age_years' => 'required|integer',
+            'pet_age_months' => 'required|integer|min:0|max:11',
+            'pet_description' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('pet/edit/' . $request->id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $pet = Pet::where('id', $request->id);
+        $pet->update([
+            'type' => $request->input('pet_type'),
+            'breed' => $request->input('pet_breed'),
+            'age_years' => $request->input('pet_age_years'),
+            'age_months' => $request->input('pet_age_months'),
+            'description' => $request->input('pet_description'),
+            'name' => $request->input('pet_name'),
+        ]);
+
+        return redirect('/pet/view/' . $request->id);
     }
 
     public function deletePet($id)
