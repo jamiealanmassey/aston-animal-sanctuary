@@ -6,7 +6,7 @@
             <div class="col-lg-2 col-md-12 mb-4">
                 <b>Sort By</b>
                 <select class="form-control form-control-sm mb-2 mt-1">
-                    <option value="1"selected>Most Relevant</option>
+                    <option value="1" selected>Most Relevant</option>
                     <option value="2">Alphabetical (Ascending)</option>
                     <option value="3">Alphabetical (Descending)</option>
                     <option value="4">Date Added (Ascending)</option>
@@ -16,9 +16,7 @@
                 <select class="form-control form-control-sm mb-2 mt-1">
                     <option value="1" selected>Dog</option>
                     <option value="2">Cat</option>
-                    <option value="3">Bird</option>
-                    <option value="4">Bunny</option>
-                    <option value="5">Hamster</option>
+                    <option value="3">Rabbit</option>
                 </select>
                 <b>Adoption Filters</b>
                 <div class="form-check mt-1">

@@ -15,14 +15,6 @@
             ->where('pet_id', $id)
             ->where('user_id', Auth::user()->id)
             ->first();
-
-        /**$adoptions = Auth::user()->pets;
-        $contains = false;
-        foreach ($adoptions as $adoption)
-        {
-            if ($adoption->id == $id)
-                $contains = true;
-        }**/
     }
     @endphp
     @if (isset($requested) && $requested)

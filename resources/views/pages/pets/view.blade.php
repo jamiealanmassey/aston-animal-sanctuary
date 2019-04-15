@@ -9,12 +9,22 @@
                 <table class="table table-sm table-borderless">
                     <tbody>
                         <tr>
-                        <th scope="row"></th>
+                            @php
+                                $animal_type = Config::get('animaltypes')[$pet->type];
+                                $animal_breeds = Config::get('animalbreeds')[$animal_type];
+                                $animal_breed = $animal_breeds[$pet->breed];
+                            @endphp
+                            <th scope="row"></th>
+                            <td><i class="fas fa-dna"></i></td>
+                            <td><h5 class="text-muted">{!! $animal_breed !!}</h5></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
                             <td><i class="fas fa-calendar"></i></td>
                             <td><h5 class="text-muted">{!! $pet->age_years !!} years, {!! $pet->age_months !!} months old</h5></td>
                         </tr>
                         <tr>
-                        <th scope="row"></th>
+                            <th scope="row"></th>
                             <td><i class="fas fa-clock"></i></td>
                             <td><h5 class="text-muted">posted {!! date('d-m-Y', strtotime($pet->created_at)) !!}</h5></td>
                         </tr>
@@ -46,28 +56,26 @@
             </div>
             <div class="row mt-4">
                 <div class="container text-center">
-
-                        <div class="card">
-                            <div class="card-body text-left">
-                                <h3><strong><i class="fas fa-list"></i> Pending Applicants</strong></h3>
-                                <div class="container">
-                                    <div class="row mt-3">
-                                        @if (isset($applicants) && count($applicants) > 0)
-                                            @foreach ($applicants as $applicant)
-                                                <div class="col-sm-3 col-md-2 ml-2 mr-2">
-                                                    <a href="{{ url('profile/view/' . $applicant->id) }}">
-                                                        <img class="rounded" src="{{ asset($applicant->profile_image) }}" width="128px" height="128px">
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <h5 class="mt-3">There is no one here <i class="fas fa-heart-broken"></i></h5>
-                                        @endif
-                                    </div>
+                    <div class="card">
+                        <div class="card-body text-left">
+                            <h3><strong><i class="fas fa-list"></i> Pending Applicants</strong></h3>
+                            <div class="container">
+                                <div class="row mt-3">
+                                    @if (isset($applicants) && count($applicants) > 0)
+                                        @foreach ($applicants as $applicant)
+                                            <div class="col-sm-3 col-md-2 ml-2 mr-2">
+                                                <a href="{{ url('profile/view/' . $applicant->id) }}">
+                                                    <img class="rounded" src="{{ asset($applicant->profile_image) }}" width="128px" height="128px">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <h5 class="mt-3">There is no one here <i class="fas fa-heart-broken"></i></h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </div>
             </div>
         </div>

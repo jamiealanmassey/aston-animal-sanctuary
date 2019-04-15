@@ -39,8 +39,8 @@ class PetController extends Controller
         {
             $validator = Validator::make($request->all(), [
                 'pet_name' => 'required|string|max:60',
-                'pet_type' => 'required|string|max:64',
-                'pet_breed' => 'required|string|max:64',
+                'pet_type' => 'required|integer',
+                'pet_breed' => 'required|integer',
                 'pet_age_years' => 'required|integer',
                 'pet_age_months' => 'required|integer|min:0|max:11',
                 'pet_description' => 'required|string',
@@ -124,20 +124,13 @@ class PetController extends Controller
         {
             $pet = Pet::where('id', $id)->first();
             return View::make('pages.pets.edit', [
-                'pet' => $pet,
-                'animal_types' => Config::get('animaltypes'),
-                'animal_breeds' => Config::get('animalbreeds')
+                'pet' => $pet
             ]);
         }
 
         return (!Auth::user()->admin) ?
             redirect('/') :
             redirect('/login');
-    }
-
-    public function validatePet(Request $request)
-    {
-
     }
 
     public function editPetUpdate(Request $request)

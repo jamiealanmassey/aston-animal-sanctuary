@@ -10,17 +10,24 @@
                 <div class="card-body">
                     <form method="POST" action="{{ url('/pet/new') }}" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @php
+                            $animal_types = Config::get('animaltypes');
+                            $animal_breeds = Config::get('animalbreeds');
+                            $query_type = Request::exists('type') ? Request::get('type') : 0;
+                            $animal_type = $animal_types[$query_type];
+                            $animal_breed_idx = 0;
+                            $animal_breed = $animal_breeds[$animal_type][$animal_breed_idx];
+                        @endphp
                         <div class="form-group row">
                             <label for="pet-type" class="col-md-4 col-form-label text-md-right">{{ __('Pet Type') }}</label>
-
                             <div class="col-md-6">
                                 <select id="pet-type" class="form-control{{ $errors->has('pet_type') ? ' is-invalid' : '' }} custom-select" name="pet_type" value="{{ old('pet_type') }}" required
-                                    onchange="window.location.href = '/pet/new?pet_type=' + $(this).children('option:selected').val()">
+                                    onchange="window.location.href = '/~masseyja/pet/new?type=' + $(this).children('option:selected').val()">
                                     @foreach ($animal_types as $type)
-                                        @if ($loop->index == Request::get('pet_type', 1)-1)
-                                            {!! "<option value=" . ($loop->index+1) . " selected>" . $type . "</option>" !!}
+                                        @if ($loop->index == $query_type)
+                                            {!! "<option value=" . $loop->index . " selected>" . $type . "</option>" !!}
                                         @else
-                                            {!! "<option value=" . ($loop->index+1) . ">" . $type . "</option>" !!}
+                                            {!! "<option value=" . $loop->index . ">" . $type . "</option>" !!}
                                         @endif
                                     @endforeach
                                 </select>
@@ -37,11 +44,11 @@
 
                             <div class="col-md-6">
                                 <select id="pet-breed" class="form-control{{ $errors->has('pet_breed') ? ' is-invalid' : '' }} custom-select" name="pet_breed" value="{{ old('pet_breed') }}" required>
-                                    @foreach ($animal_breeds[$animal_types[Request::get('pet_type', 1)-1]] as $breed)
-                                        @if ($loop->first)
-                                            {!! "<option value=" . ($loop->index+1) . " selected>" . $breed . "</option>" !!}
+                                    @foreach ($animal_breeds[$animal_type] as $breed)
+                                        @if ($loop->index == $animal_breed_idx)
+                                            {!! "<option value=" . $loop->index . " selected>" . $breed . "</option>" !!}
                                         @else
-                                            {!! "<option value=" . ($loop->index+1) . ">" . $breed . "</option>" !!}
+                                            {!! "<option value=" . $loop->index . ">" . $breed . "</option>" !!}
                                         @endif
                                     @endforeach
                                 </select>

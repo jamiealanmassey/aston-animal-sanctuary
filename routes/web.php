@@ -14,7 +14,7 @@
 /// OTHER TODOS
 /// 1) update stored pet types and breeds (limit to dogs/cats/rabbits for now)
 /// 2) cron job to calculate featured pets every night at midnight or every 6 hours
-/// 3) allow user to change their own profile
+/// 3) allow user to change their own profile picture
 /// 4) allow admin to change profile picture of pet
 /// 5) update request fragment for admins to display "Adopted" in green when pet is adopted
 /// 6) show list of all pets that user has adopted on profile page
