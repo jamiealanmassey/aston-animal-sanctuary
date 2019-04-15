@@ -1,22 +1,26 @@
+@php
+if (Auth::check())
+{
+    $already_adopted = DB::table('pet_user')
+        ->where('pet_id', '=', $id)
+        ->where('adoption_status', '=', 2)
+        ->get();
+
+    $requested = DB::table('pet_user')
+        ->where('pet_id', $id)
+        ->where('user_id', Auth::user()->id)
+        ->first();
+}
+@endphp
 @if (Auth::check() && Auth::user()->admin)
     <a href="{{ url('applicants/view?pet_id=' . $id) }}">
-        <div class="btn btn-warning btn-block">View Applicants</div>
+        @if (count($already_adopted) > 0)
+            <div class="btn btn-secondary btn-block">Found Home</div>
+        @else
+            <div class="btn btn-warning btn-block">View Applicants</div>
+        @endif
     </a>
 @else
-    @php
-    if (Auth::check())
-    {
-        $already_adopted = DB::table('pet_user')
-            ->where('pet_id', '=', $id)
-            ->where('adoption_status', '=', 2)
-            ->get();
-
-        $requested = DB::table('pet_user')
-            ->where('pet_id', $id)
-            ->where('user_id', Auth::user()->id)
-            ->first();
-    }
-    @endphp
     @if (isset($requested) && $requested)
         @if ($requested->adoption_status == 0)
             <form method="POST" action="{{ url('/pet/view/cancel/' . $id) }}">

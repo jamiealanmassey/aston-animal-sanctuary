@@ -12,14 +12,13 @@
 */
 
 /// OTHER TODOS
-/// 1) update stored pet types and breeds (limit to dogs/cats/rabbits for now)
-/// 2) cron job to calculate featured pets every night at midnight or every 6 hours
-/// 3) allow user to change their own profile picture
-/// 4) allow admin to change profile picture of pet
-/// 5) update request fragment for admins to display "Adopted" in green when pet is adopted
-/// 6) show list of all pets that user has adopted on profile page
-/// 7) update pet page when adopted so that pending adoptions do not show anymore
-/// 8) allow deletion of pets/users
+/// 1) cron job to calculate featured pets every night at midnight or every 6 hours
+/// 2) allow user to change their own profile picture
+/// 3) allow admin to change profile picture of pet
+/// 4) show list of all pets that user has adopted on profile page
+/// 5) update pet page when adopted so that pending adoptions do not show anymore
+/// 6) allow deletion of pets/users
+/// 7) fix issues with the 'rabbit' types
 
 /// STRETCH TODOS
 /// 1) allow admin to upload an array of pictures for a pet (adding/removing)
