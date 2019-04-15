@@ -14,8 +14,8 @@
     </div>
 </div>
 
-<div class="container-fluid landing-content">
-    <div class="row landing-content mb-4">
+<div class="container-fluid landing-content p-3">
+    <div class="row landing-content mb-5">
         @for ($x = 0; $x < 4; $x++)
             <div class="col-lg-3 col-md-6 col-xs-12 bg-light-2 text-center secondary-text overflow-hidden">
                 <a href="#" class="secondary-text">

@@ -54,30 +54,38 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="container text-center">
-                    <div class="card">
-                        <div class="card-body text-left">
-                            <h3><strong><i class="fas fa-list"></i> Pending Applicants</strong></h3>
-                            <div class="container">
-                                <div class="row mt-3">
-                                    @if (isset($applicants) && count($applicants) > 0)
-                                        @foreach ($applicants as $applicant)
-                                            <div class="col-sm-3 col-md-2 ml-2 mr-2">
-                                                <a href="{{ url('profile/view/' . $applicant->id) }}">
-                                                    <img class="rounded" src="{{ asset($applicant->profile_image) }}" width="128px" height="128px">
-                                                </a>
-                                            </div>
-                                        @endforeach
-                                    @else
-                                        <h5 class="mt-3">There is no one here <i class="fas fa-heart-broken"></i></h5>
-                                    @endif
+            @php
+                $already_adopted = DB::table('pet_user')
+                    ->where('pet_id', '=', $pet->id)
+                    ->where('adoption_status', '=', 2)
+                    ->get();
+            @endphp
+            @if (($already_adopted != null && count($already_adopted) == 0) || $already_adopted == null)
+                <div class="row mt-4">
+                    <div class="container text-center">
+                        <div class="card">
+                            <div class="card-body text-left">
+                                <h3><strong><i class="fas fa-list"></i> Pending Applicants</strong></h3>
+                                <div class="container">
+                                    <div class="row mt-3">
+                                        @if (isset($applicants) && count($applicants) > 0)
+                                            @foreach ($applicants as $applicant)
+                                                <div class="col-sm-3 col-md-2 ml-2 mr-2">
+                                                    <a href="{{ url('profile/view/' . $applicant->id) }}">
+                                                        <img class="rounded" src="{{ asset($applicant->profile_image) }}" width="128px" height="128px">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <h5 class="mt-3">There is no one here <i class="fas fa-heart-broken"></i></h5>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 </div>

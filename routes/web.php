@@ -16,9 +16,8 @@
 /// 2) allow user to change their own profile picture
 /// 3) allow admin to change profile picture of pet
 /// 4) show list of all pets that user has adopted on profile page
-/// 5) update pet page when adopted so that pending adoptions do not show anymore
-/// 6) allow deletion of pets/users
-/// 7) fix issues with the 'rabbit' types
+/// 5) allow deletion of pets/users
+/// 6) fix issues with the 'rabbit' types
 
 /// STRETCH TODOS
 /// 1) allow admin to upload an array of pictures for a pet (adding/removing)
