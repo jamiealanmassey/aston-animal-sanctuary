@@ -73,7 +73,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $request = request();
-        Log::debug('creating profile image in database');
         if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid())
         {
             $image = $request->file('profile_image');
@@ -82,7 +81,6 @@ class RegisterController extends Controller
             $image->move($location, $filename);
         }
 
-        Log::debug('creating user in database');
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],

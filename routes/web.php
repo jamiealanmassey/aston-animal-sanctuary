@@ -11,7 +11,7 @@
 |
 */
 
-/// OTHER TODOS
+/// TODOS
 /// 1) cron job to calculate featured pets every night at midnight or every 6 hours
 /// 2) allow user to change their own profile picture
 /// 3) allow admin to change profile picture of pet
@@ -21,7 +21,7 @@
 
 /// STRETCH TODOS
 /// 1) allow admin to upload an array of pictures for a pet (adding/removing)
-/// 2) filtering of results on Adoption page
+/// 2) filtering of results on /adopt page
 /// 3) Privacy settings for users
 
 // Default main web routes

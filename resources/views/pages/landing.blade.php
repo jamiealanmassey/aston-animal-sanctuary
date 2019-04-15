@@ -5,7 +5,6 @@
     <div class="card-img-overlay p-3 p-md-5 m-md-3">
         <h5 class="card-title display-4 font-weight-normal">Adopt a Friend</h5>
         <p class="card-text lead font-weight-normal">Our mission statement is to connect animals with loving owners who truly care</p>
-        {{-- this should say "Adopt Now" or "Register Now" depending on if the user is logged in --}}
         @if (Auth::check())
             <a class="btn btn-default" href="{{ url('/adopt') }}"><strong>Adpot Now</strong></a>
         @else
@@ -13,13 +12,12 @@
         @endif
     </div>
 </div>
-
 <div class="container-fluid landing-content p-3">
     <div class="row landing-content mb-5">
         @for ($x = 0; $x < 4; $x++)
-            <div class="col-lg-3 col-md-6 col-xs-12 bg-light-2 text-center secondary-text overflow-hidden">
+            <div class="col-xs-12 col-md-6 col-xl-3 bg-light-2 text-center secondary-text overflow-hidden">
                 <a href="#" class="secondary-text">
-                    <div class="card p-3">
+                    <div class="card p-3 mb-4">
                         <h2 class="display-5">Pet Name #{{ $x+1 }}</h2>
                         <p class="lead">Please adopt this cute animal before they are adopted by someone else!
                         <p class="lead"><h6><strong>CLICK ON ME TO FIND OUT MORE</strong></h6></p>
