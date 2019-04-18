@@ -22,6 +22,7 @@ class CreatePetsTable extends Migration
             $table->integer('age_months');
             $table->string('description');
             $table->string('profile_img');
+            $table->unsignedBigInteger('impressions')->default(0);
             $table->integer('availabiltiy')->default(0);
             $table->timestamps();
         });

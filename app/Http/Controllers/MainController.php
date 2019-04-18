@@ -17,7 +17,13 @@ class MainController extends Controller
 
     public function viewLandingPage()
     {
-        return view('pages.landing');
+        $featured_pets_db = DB::table('featured_relation')->get();
+        $featured_pets = [];
+        foreach ($featured_pets_db as $entry) {
+            $featured_pets[] = Pet::find($entry->pet_id);
+        }
+
+        return View::make('pages.landing', [ 'featured_pets' => $featured_pets ]);
     }
 
     public function viewAdoptPage()

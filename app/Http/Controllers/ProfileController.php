@@ -74,7 +74,7 @@ class ProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('profile/edit')
+            return redirect('/profile/edit')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -88,7 +88,7 @@ class ProfileController extends Controller
             'location' => $request->input('location'),
         ]);
 
-        return redirect('/profile');
+        return redirect('/profile/view');
     }
 
     /**

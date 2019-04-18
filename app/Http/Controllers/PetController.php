@@ -88,8 +88,21 @@ class PetController extends Controller
         return redirect('/');
     }
 
+    private function isAlreadyAdopted($id)
+    {
+        $already_adopted = DB::table('pet_user')
+            ->where('pet_id', '=', $id)
+            ->where('adoption_status', '=', 2)
+            ->get();
+
+        return count($already_adopted) > 0;
+    }
+
     public function viewPetRequest($id)
     {
+        if (isAlreadyAdopted($id))
+            return redirect()->back();
+
         Auth::user()->pets()->syncWithoutDetaching([$id =>
             [
                 'created_at' => now(),
@@ -102,6 +115,9 @@ class PetController extends Controller
 
     public function viewPetCancel($id)
     {
+        if (isAlreadyAdopted($id))
+            return redirect('/adopt');
+
         Auth::user()->pets()->detach($id);
         return redirect()->back();
     }
@@ -109,6 +125,8 @@ class PetController extends Controller
     public function viewPet($id)
     {
         $pet = Pet::where('id', $id)->first();
+        $pet->impressions = $pet->impressions + 1;
+        $pet->save();
         $applicants = array();
         $filter = DB::table('pet_user')->where('pet_id', $id)->get();
         foreach ($filter as $element) {

@@ -41,10 +41,5 @@ if (Auth::check())
         @else
             <div class="btn btn-secondary btn-block disabled">Already Adopted</div>
         @endif
-    @else
-        <form method="POST" action="{{ url('/pet/view/request/' . $id) }}">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn btn-success btn-block">Request Adoption</button>
-        </form>
     @endif
 @endif

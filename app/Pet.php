@@ -17,7 +17,7 @@ class Pet extends Model
     ];
 
     protected $hidden = [
-        'availablity',
+        'availablity', 'impressions',
     ];
 
     public function users()

@@ -42,7 +42,6 @@
         </div>
         <div class="col-md-12 col-lg-9">
             <div class="row">
-                {{-- TODO: Add carousel of images --}}
             </div>
             <div class="row">
                 <div class="col-12">
