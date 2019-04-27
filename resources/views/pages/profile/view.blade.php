@@ -38,8 +38,28 @@
         </div>
         <div class="row mt-5 text-center">
             <div class="col">
-                <h2><strong>Past Adoptions</strong></h2>
-                <h4 class="text-muted mt-3">There is nothing to show</h4>
+                @if (count($adoptions) == 0)
+                    <h2><strong>Past Adoptions</strong></h2>
+                    <h4 class="text-muted mt-3">There is nothing to show</h4>
+                @else
+                    <div class="container-fluid">
+                        <h2><strong>Past Adoptions</strong></h2>
+                        @foreach ($adoptions as $adoption)
+                            <div class="row mb-3 mt-3">
+                                <div class="col-12">
+                                    <a href="{{ url('pet/view/' . $adoption->id) }}">
+                                        <div class="card">
+                                            <div class="card-body">
+                                            <h5 class="card-title"><b>{{ $adoption->name }}</b></h5>
+                                                <p class="card-text">{{ $adoption->description }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
         <div class="row mt-2 text-center">

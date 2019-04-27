@@ -12,12 +12,10 @@
 */
 
 /// TODOS
-/// 1) Fix bug where user can't see 'Request Adoption' buttons
-/// 2) allow user to change their own profile picture
-/// 3) allow admin to change profile picture of pet
-/// 4) show list of all pets that user has adopted on profile page
-/// 5) allow deletion of pets/users
-/// 6) fix issues with the 'rabbit' types
+/// 1) allow user to change their own profile picture
+/// 2) allow admin to change profile picture of pet
+/// 3) allow deletion of pets/users
+/// 4) fix issues with the 'rabbit' types
 
 /// STRETCH TODOS
 /// 1) allow admin to upload an array of pictures for a pet (adding/removing)

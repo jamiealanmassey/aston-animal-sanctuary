@@ -30,7 +30,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item primary-text" href="{{ url('profile/view') }}">Profile</a>
-                            <a class="dropdown-item primary-text" href="{{ url('privacy/view') }}">Privacy Settings</a>
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('logout') }}" class="dropdown-item primary-text" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                 Logout

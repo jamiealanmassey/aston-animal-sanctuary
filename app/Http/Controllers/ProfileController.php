@@ -8,6 +8,7 @@ use Auth;
 use Validator;
 
 use App\User;
+use App\Pet;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,22 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
+    private function getPastAdoptions($id)
+    {
+        $requested = DB::table('pet_user')
+            ->where('user_id', $id)
+            ->where('adoption_status', 2)
+            ->get();
+
+        $adoptions = [];
+        foreach ($requested as $request)
+        {
+            $adoptions[] = DB::table('pets')->where('id', $request->pet_id)->first();
+        }
+
+        return $adoptions;
+    }
+
     /**
      * Locates the currently logged in user if there is one
      *
@@ -31,7 +48,8 @@ class ProfileController extends Controller
      */
     public function getProfilePage()
     {
-        return View::make('pages.profile.view', [ 'user' => Auth::user() ]);
+        $adoptions = $this->getPastAdoptions(Auth::user()->id);
+        return View::make('pages.profile.view', [ 'user' => Auth::user(), 'adoptions' => $adoptions ]);
     }
 
     /**
@@ -42,9 +60,9 @@ class ProfileController extends Controller
      */
     public function getProfilePageID($id)
     {
-        // TODO: Block giving results on profiles set to private
         $user = DB::table('users')->where('id', $id)->first();
-        return View::make('pages.profile.view', [ 'user' => $user ]);
+        $adoptions = $this->getPastAdoptions($id);
+        return View::make('pages.profile.view', [ 'user' => $user, 'adoptions' => $adoptions ]);
     }
 
     /**
