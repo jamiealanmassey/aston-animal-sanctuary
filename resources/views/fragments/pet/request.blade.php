@@ -32,7 +32,7 @@ if (Auth::check())
         @elseif ($requested->adoption_status == 2)
             <div class="btn btn-success btn-block disabled">Adoption Approved</div>
         @endif
-    @elseif (isset($requested) && !$requested)
+    @elseif ((isset($requested) && !$requested) || !isset($requested))
         @if (count($already_adopted) == 0)
             <form method="POST" action="{{ url('/pet/view/request/' . $id) }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

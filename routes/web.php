@@ -12,7 +12,7 @@
 */
 
 /// TODOS
-/// 1) cron job to calculate featured pets every night at midnight or every 6 hours
+/// 1) Fix bug where user can't see 'Request Adoption' buttons
 /// 2) allow user to change their own profile picture
 /// 3) allow admin to change profile picture of pet
 /// 4) show list of all pets that user has adopted on profile page
