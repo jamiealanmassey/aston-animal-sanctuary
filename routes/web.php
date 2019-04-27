@@ -11,9 +11,6 @@
 |
 */
 
-/// TODOS
-/// 1) fix issues with the 'rabbit' types
-
 /// STRETCH TODOS
 /// 1) allow admin to upload an array of pictures for a pet (adding/removing)
 
