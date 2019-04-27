@@ -124,9 +124,4 @@ class ProfileController extends Controller
         $applications = DB::table('pet_user')->where('user_id', Auth::user()->id)->get();
         return View::make('pages.applications.view', [ 'applications' => $applications ]);
     }
-
-    public function pendingProfileUpdate($id)
-    {
-        // TODO
-    }
 }

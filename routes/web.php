@@ -12,15 +12,12 @@
 */
 
 /// TODOS
-/// 1) allow user to change their own profile picture
-/// 2) allow admin to change profile picture of pet
-/// 3) allow deletion of pets/users
-/// 4) fix issues with the 'rabbit' types
+/// 1) allow deletion of pets/users
+/// 2) fix issues with the 'rabbit' types
 
 /// STRETCH TODOS
 /// 1) allow admin to upload an array of pictures for a pet (adding/removing)
-/// 2) filtering of results on /adopt page
-/// 3) Privacy settings for users
+/// 2) Privacy settings for users
 
 // Default main web routes
 Route::get('/', 'MainController@viewLandingPage'); // implemented
