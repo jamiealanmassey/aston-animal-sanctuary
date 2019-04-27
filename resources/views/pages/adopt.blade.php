@@ -32,7 +32,7 @@
                             <option value="{{ $i }}" {!! $i == $filter_type ? 'selected' : '' !!}>{!! $filter_types[$i] !!}</option>
                         @endfor
                     </select>
-                    <button class="btn btn-block btn-primary btn-sm mt-3" type="submit">Update Filters</button>
+                    <button class="btn btn-block btn-dark btn-sm mt-3" type="submit">Update Filters</button>
                 </form>
             </div>
             <div class="col-lg-10 col-md-12">
@@ -41,6 +41,11 @@
                         @foreach ($pets as $pet)
                         @include('fragments.pet.frame', [ 'pet' => $pet ])
                         @endforeach
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ $pets->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

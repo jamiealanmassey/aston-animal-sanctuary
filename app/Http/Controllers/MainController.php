@@ -34,25 +34,27 @@ class MainController extends Controller
         switch($filter_sort)
         {
             case 0:
-                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('impressions')->get();
+                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('impressions');
                 break;
             case 1:
-                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('name')->get();
+                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('name');
                 break;
             case 2:
-                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('name', 'DESC')->get();
+                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('name', 'DESC');
                 break;
             case 3:
-                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('created_at')->get();
+                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('created_at');
                 break;
             case 4:
-                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('created_at', 'DESC')->get();
+                $pets = DB::table('pets')->where('type', $filter_type)->orderBy('created_at', 'DESC');
                 break;
             default:
-                $pets = DB::table('pets')->orderBy('impressions')->get();
+                $pets = DB::table('pets')->orderBy('impressions');
                 break;
         }
 
+        $pets = $pets->paginate(3);
+        $pets->appends([ 'filters-sort' => $filter_sort, 'filters-type' => $filter_type ]);
         return View::make('pages.adopt', [
             'pets' => $pets,
             'filter_sort' => $filter_sort,
