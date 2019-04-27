@@ -10,9 +10,41 @@
             </a>
             @if (Auth::user()->id == $user->id)
                 <div class="col-3 text-right">
-                    <a href="{{ url('/profile/edit') }}" class="return">
-                        <h6>Edit Profile</h6>
+
+                    <a href="{{ url('/profile/edit') }}">
+                        <div class="btn btn-success">
+                            Edit Profile
+                        </div>
                     </a>
+                    <a href="#">
+                        <div data-toggle="modal" data-target="#modal" class="btn btn-danger">
+                            Delete Profile
+                        </div>
+                    </a>
+                </div>
+                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-label">WARNING</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Proceeding to delete your account will remove it from our records forever and you will not be able to retrieve any information,
+                                do you wish to proceed?
+                            </div>
+                            <div class="modal-footer">
+                                <form method="POST" action="{{ url('/profile/delete') }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                                </form>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endif
         </div>

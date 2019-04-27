@@ -16,7 +16,7 @@ class CreateFeaturedRelationTable extends Migration
         Schema::create('featured_relation', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('pet_id');
-            $table->foreign('pet_id')->references('id')->on('pets');
+            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
             $table->timestamps();
         });
     }

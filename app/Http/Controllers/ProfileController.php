@@ -116,7 +116,9 @@ class ProfileController extends Controller
      */
     public function destroyProfile()
     {
-        // TODO
+        $user = User::find(Auth::user()->id);
+        $user->delete();
+        return redirect('/');
     }
 
     public function applicationsView()

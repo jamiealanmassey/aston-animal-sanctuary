@@ -53,7 +53,7 @@ class MainController extends Controller
                 break;
         }
 
-        $pets = $pets->paginate(3);
+        $pets = $pets->paginate(6);
         $pets->appends([ 'filters-sort' => $filter_sort, 'filters-type' => $filter_type ]);
         return View::make('pages.adopt', [
             'pets' => $pets,

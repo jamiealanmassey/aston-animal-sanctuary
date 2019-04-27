@@ -185,6 +185,9 @@ class PetController extends Controller
 
     public function deletePet($id)
     {
-        return View::make('pages.landing');
+        $pet = Pet::find($id);
+        //$pet->users()->delete();
+        $pet->delete();
+        return redirect('/');
     }
 }

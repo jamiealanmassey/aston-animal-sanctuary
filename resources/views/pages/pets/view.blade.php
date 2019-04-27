@@ -37,6 +37,36 @@
                             <button class="btn btn-default btn-block">Edit Pet</button>
                         </a>
                     </div>
+                    <div class="mt-2">
+                        <a href="#">
+                            <div data-toggle="modal" data-target="#modal" class="btn btn-danger btn-block">
+                                Delete Pet
+                            </div>
+                        </a>
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-label">WARNING</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this pet?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form method="POST" action="{{ url('/pet/delete/' . $pet->id) }}">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-danger">Delete Pet</button>
+                                        </form>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>
