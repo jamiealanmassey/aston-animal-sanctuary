@@ -16,7 +16,9 @@ if (Auth::check())
     @if (Auth::user()->admin)
         <a href="{{ url('applicants/view?pet_id=' . $id) }}">
             @if (count($already_adopted) > 0)
-                <div class="btn btn-secondary btn-block">Found Home</div>
+                <a href="{{ url('/profile/view/' . $already_adopted[0]->user_id) }}">
+                    <div class="btn btn-secondary btn-block">Found Home</div>
+                </a>
             @else
                 <div class="btn btn-warning btn-block">View Applicants</div>
             @endif
