@@ -25,11 +25,11 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    private function getPastAdoptions($id)
+    private function getPastAdoptions($id, $status)
     {
         $requested = DB::table('pet_user')
             ->where('user_id', $id)
-            ->where('adoption_status', 2)
+            ->where('adoption_status', $status)
             ->get();
 
         $adoptions = [];
@@ -48,8 +48,13 @@ class ProfileController extends Controller
      */
     public function getProfilePage()
     {
-        $adoptions = $this->getPastAdoptions(Auth::user()->id);
-        return View::make('pages.profile.view', [ 'user' => Auth::user(), 'adoptions' => $adoptions ]);
+        $adoptions = $this->getPastAdoptions(Auth::user()->id, 2);
+        $rejections = $this->getPastAdoptions(Auth::user()->id, 1);
+        return View::make('pages.profile.view', [
+            'user' => Auth::user(),
+            'adoptions' => $adoptions,
+            'rejections' => $rejections,
+        ]);
     }
 
     /**
@@ -61,8 +66,13 @@ class ProfileController extends Controller
     public function getProfilePageID($id)
     {
         $user = DB::table('users')->where('id', $id)->first();
-        $adoptions = $this->getPastAdoptions($id);
-        return View::make('pages.profile.view', [ 'user' => $user, 'adoptions' => $adoptions ]);
+        $adoptions = $this->getPastAdoptions(Auth::user()->id, 2);
+        $rejections = $this->getPastAdoptions(Auth::user()->id, 1);
+        return View::make('pages.profile.view', [
+            'user' => $user,
+            'adoptions' => $adoptions,
+            'rejections' => $rejections,
+        ]);
     }
 
     /**

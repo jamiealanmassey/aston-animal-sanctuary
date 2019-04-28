@@ -94,10 +94,30 @@
                 @endif
             </div>
         </div>
-        <div class="row mt-2 text-center">
-            <div class="col-sm-12 col-md-3">
-            </div>
-            <div class="col-sm-12 col-md-9">
+        <div class="row mt-5 text-center">
+            <div class="col">
+                @if (count($rejections) == 0)
+                    <h2><strong>Rejected Applications</strong></h2>
+                    <h4 class="text-muted mt-3">There is nothing to show</h4>
+                @else
+                    <div class="container-fluid">
+                        <h2><strong>Rejected Applications</strong></h2>
+                        @foreach ($rejections as $rejection)
+                            <div class="row mb-3 mt-3">
+                                <div class="col-12">
+                                    <a href="{{ url('pet/view/' . $rejection->id) }}">
+                                        <div class="card">
+                                            <div class="card-body">
+                                            <h5 class="card-title"><b>{{ $rejection->name }}</b></h5>
+                                                <p class="card-text">{{ $rejection->description }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>
