@@ -33,9 +33,10 @@ Route::delete('/profile/delete', 'ProfileController@destroyProfile'); // impleme
 Route::put('/profile/edit', 'ProfileController@editProfileUpdate'); // implemented
 Route::get('/profile/edit', 'ProfileController@editProfileView'); // implemented
 Route::get('/profile/view', 'ProfileController@getProfilePage'); // implemented
-Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+'); // implemented/more features
+Route::get('/profile/view/{id}', 'ProfileController@getProfilePageID')->where('id', '[0-9]+'); // implemented
 Route::get('/profile/applications/view', 'ProfileController@applicationsView'); // implemented
 
+// Administrator Routes
 Route::get('/applicants/view', 'ApplicantController@viewApplicants'); // implemented
 Route::put('/applicants/accept/{id}', 'ApplicantController@acceptApplicant'); // implemented
 Route::put('/applicants/reject/{id}', 'ApplicantController@rejectApplicant'); // implemented

@@ -14,6 +14,16 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Profile Controller
+    |--------------------------------------------------------------------------
+    |
+    | Deals with responding to the CRUD routes setup to deal with the concept of
+    | Users.
+    |
+    */
+
     /**
      * Constructor called when accessing a profile, ensures that a
      * User must be logged in before anything else happens
@@ -25,6 +35,14 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Helper method that accessed the DB and returns all the past adoptions for the
+     * specified Pet in the adoption relations table.
+     *
+     * @param int $id Unique ID of the Pet to check
+     * @param int $status Status to check for (pending/rejected/accepted)/(0/1/2)
+     * @return boolean
+     */
     private function getPastAdoptions($id, $status)
     {
         $requested = DB::table('pet_user')
@@ -131,6 +149,11 @@ class ProfileController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Views the current and past applications that the user has made for pets.
+     *
+     * @return View page of the app
+     */
     public function applicationsView()
     {
         $applications = DB::table('pet_user')->where('user_id', Auth::user()->id)->get();

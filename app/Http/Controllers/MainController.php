@@ -11,10 +11,31 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Main Controller
+    |--------------------------------------------------------------------------
+    |
+    | Generic shared controller that deals in very high-level routes that do not fit
+    | into a cohesive concept.
+    |
+    */
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
     }
 
+    /**
+     * Connected to the / route this method will render the landing page with all
+     * the pets stored in the featued relation table.
+     *
+     * @return View
+     */
     public function viewLandingPage()
     {
         $featured_pets_db = DB::table('featured_relation')->get();
@@ -26,6 +47,13 @@ class MainController extends Controller
         return View::make('pages.landing', [ 'featured_pets' => $featured_pets ]);
     }
 
+    /**
+     * Connected to the /adopt route this method will list all of the pets stored in
+     * the DB with whichever filters that the user decides to apply.
+     *
+     * @param Request $request information about the request
+     * @return View
+     */
     public function viewAdoptPage(Request $request)
     {
         $filter_sort = $request->input('filters-sort');

@@ -16,7 +16,7 @@
     <div class="row landing-content mb-5">
         @foreach ($featured_pets as $featured)
             <div class="col-xs-12 col-md-6 col-xl-3 bg-light-2 text-center secondary-text overflow-hidden">
-                <a href="#" class="secondary-text">
+                <a href="{{ url('/pet/view/' . $featured->id) }}" class="secondary-text">
                     <div class="card p-3 mb-4">
                         <h2 class="display-5">{{ $featured->name }}</h2>
                         <p class="lead">Please adopt this cute animal before they are adopted by someone else!
@@ -26,18 +26,6 @@
                 </a>
             </div>
         @endforeach
-        {{--@for ($x = 0; $x < count($featured_pets); $x++)
-            <div class="col-xs-12 col-md-6 col-xl-3 bg-light-2 text-center secondary-text overflow-hidden">
-                <a href="#" class="secondary-text">
-                    <div class="card p-3 mb-4">
-                        <h2 class="display-5">{{ $featured_pets[$x]->name }}</h2>
-                        <p class="lead">Please adopt this cute animal before they are adopted by someone else!
-                        <p class="lead"><h6><strong>CLICK ON ME TO FIND OUT MORE</strong></h6></p>
-                        <img src="img/featured/featured_{{ $x+1 }}.jpg" class="rounded-circle mt-2 mb-4 mx-auto" width="150px" height="150px">
-                    </div>
-                </a>
-            </div>
-        @endfor--}}
     </div>
 </div>
 @stop

@@ -15,6 +15,15 @@ use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Pet Controller
+    |--------------------------------------------------------------------------
+    |
+    | Deals in the viewing, creation, editing and deletion of pets from the DB.
+    |
+    */
+
     /**
      * Constructor called when accessing a profile, ensures that a
      * User must be logged in before anything else happens
@@ -26,6 +35,13 @@ class PetController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Connected to the /pet/new route this method will render the form for creating
+     * a new pet if the user has admin status, otherwise the user will be returned to
+     * the landing page.
+     *
+     * @return View
+     */
     public function newPetView()
     {
         return (Auth::user()->admin) ?
@@ -33,6 +49,13 @@ class PetController extends Controller
             view('pages.landing');
     }
 
+    /**
+     * Connected to the /pet/new route this method will make a post request from the user
+     * and attempt to add the new pet to the database
+     *
+     * @param Request $request information about the request
+     * @return View
+     */
     public function newPetCreate(Request $request)
     {
         if (Auth::user()->admin)
@@ -88,6 +111,13 @@ class PetController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Helper method that determines if the Pet has already been adopted by another
+     * user or not.
+     *
+     * @param int $id ID of the pet to be checked
+     * @return boolean
+     */
     public function isAlreadyAdopted($id)
     {
         $already_adopted = DB::table('pet_user')
@@ -98,6 +128,13 @@ class PetController extends Controller
         return count($already_adopted) > 0;
     }
 
+    /**
+     * Connected to the /pet/view/request/{id} route this method will make a post request from the user
+     * and attempt to make an adoption request
+     *
+     * @param int $id ID of the pet the user wants to adopt
+     * @return View
+     */
     public function viewPetRequest($id)
     {
         if ($this->isAlreadyAdopted($id))
@@ -113,6 +150,13 @@ class PetController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Connected to the /pet/view/cancel/{id} route this method will make a post request from the user
+     * and attempt to cancel an adoption request
+     *
+     * @param int $id ID of the pet the user wants to adopt
+     * @return View
+     */
     public function viewPetCancel($id)
     {
         if ($this->isAlreadyAdopted($id))
@@ -122,6 +166,13 @@ class PetController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Connected to the /pet/view/{id} route this method will render the page for
+     * the pet with the specified ID
+     *
+     * @param int $id ID of the pet the user wants to adopt
+     * @return View
+     */
     public function viewPet($id)
     {
         $pet = Pet::where('id', $id)->first();
@@ -136,6 +187,13 @@ class PetController extends Controller
         return View::make('pages.pets.view', [ 'pet' => $pet, 'applicants' =>  $applicants]);
     }
 
+    /**
+     * Connected to the /pet/edit/{id} route this method will render the page for
+     * the form to edit the pet with the specified ID
+     *
+     * @param int $id ID of the pet the user wants to adopt
+     * @return View
+     */
     public function editPetView($id)
     {
         if (Auth::user()->admin)
@@ -151,6 +209,13 @@ class PetController extends Controller
             redirect('/login');
     }
 
+    /**
+     * Connected to the /pet/edit/{id} route this POST method will validate the form
+     * input and updates information about the pet
+     *
+     * @param Request $request information about the request
+     * @return View
+     */
     public function editPetUpdate(Request $request)
     {
         if (!Auth::user()->admin) return redirect('/');
@@ -183,10 +248,16 @@ class PetController extends Controller
         return redirect('/pet/view/' . $request->id);
     }
 
+    /**
+     * Connected to the /pet/delete/{id} route this DELETE method will attempt to
+     * remove the pet with the specified ID from the server and cascades its destruction
+     *
+     * @param Request $request information about the request
+     * @return View
+     */
     public function deletePet($id)
     {
         $pet = Pet::find($id);
-        //$pet->users()->delete();
         $pet->delete();
         return redirect('/');
     }
