@@ -31,6 +31,9 @@ class MainController extends Controller
         $filter_sort = $request->input('filters-sort');
         $filter_type = $request->input('filters-type');
 
+        if (!$request->input('filters-sort')) $filter_sort = 0;
+        if (!$request->input('filters-type')) $filter_type = 0;
+
         switch($filter_sort)
         {
             case 0:

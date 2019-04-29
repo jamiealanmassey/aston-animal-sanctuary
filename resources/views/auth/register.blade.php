@@ -55,7 +55,7 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                 <small id="passwordHelpBlock" class="form-text text-muted">
-                                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                                    Your password must be 8-20 characters long and contain both letters and numbers.
                                 </small>
 
                                 @if ($errors->has('password'))

@@ -56,11 +56,19 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'max:20', 'confirmed'],
             'bio' => ['string', 'max:512'],
             'profile_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'birth_date' => ['required', 'date'],
-            'location' => ['required', 'string', 'min:5', 'max:128']
+            'location' => ['required', 'string', 'min:5', 'max:128'],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'min:8',              // must be at least 8 characters in length
+                'max:20',             // must be at most 20 characters in length
+                'regex:/[a-zA-Z]/',   // must contain at least one letter
+                'regex:/[0-9]/',      // must contain at least one digit
+            ],
         ]);
     }
 
