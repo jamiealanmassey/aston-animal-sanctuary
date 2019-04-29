@@ -84,8 +84,8 @@ class ProfileController extends Controller
     public function getProfilePageID($id)
     {
         $user = DB::table('users')->where('id', $id)->first();
-        $adoptions = $this->getPastAdoptions(Auth::user()->id, 2);
-        $rejections = $this->getPastAdoptions(Auth::user()->id, 1);
+        $adoptions = $this->getPastAdoptions($id, 2);
+        $rejections = $this->getPastAdoptions($id, 1);
         return View::make('pages.profile.view', [
             'user' => $user,
             'adoptions' => $adoptions,
